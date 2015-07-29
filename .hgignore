@@ -1,0 +1,9 @@
+# use global syntax for excludes
+syntax: regexp
+
+^Debug
+^Release
+
+syntax: glob
+.git
+ipch
