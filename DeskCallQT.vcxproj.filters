@@ -83,6 +83,18 @@
     <ClCompile Include="GeneratedFiles\Release\moc_DeskPushButton.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="FirstPushButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FirstPushButton.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FirstPushButton.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="SecondPushButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="deskcallqt.h">
@@ -109,6 +121,9 @@
     <CustomBuild Include="DeskPushButton.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="FirstPushButton.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_deskcallqt.h">
@@ -124,6 +139,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ConfigSql.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SecondPushButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

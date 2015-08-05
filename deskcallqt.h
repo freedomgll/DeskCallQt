@@ -41,6 +41,8 @@ public:
 	void drawButtons();
 	void drawPage();
 
+	QList<QPushButton *> buttonList;
+
 	QFont font(const QString & qfamily, const QString & qpointSize, const QString & qweight, const QString & qitalic)
 	{
 		QString family = settings->value(qfamily).toString();
@@ -73,8 +75,7 @@ private:
 
 	QLabel * noticeLabel;
 	QLabel * welcomeLabel;
-	QList<QPushButton *> buttonList;
-
+	
 	QSettings * settings;
 
 	int offIndex;

@@ -1,6 +1,7 @@
 #include "deskcallqt.h"
 #include "ConfigUtils.h"
 #include "ConfigSql.h"
+#include "FirstPushButton.h"
 
 #include <QtWidgets/QLayout>
 #include <QStandardItemModel>
@@ -72,6 +73,9 @@ DeskCallQT::DeskCallQT(QWidget *parent)
 //Top=5
 //Bottom=70
 //MaxRows=4
+
+	FirstPushButton * bu = new FirstPushButton("test","c7ab1fe1-b583-40bc-a837-b2d3d060c4d1",100,this);
+	bu->setGeometry(100,100,50,20);
 
 	CoderPostion postion;
 	postion.left = 35;
