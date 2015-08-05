@@ -9,6 +9,7 @@
 
 #include "ConfigSql.h"
 #include "DeskPushButton.h"
+#include "ConfigUtils.h"
 
 //class MyPushButton : public QPushButton
 //{
@@ -35,13 +36,17 @@ public:
 protected:
     void  resizeEvent(QResizeEvent* event);
 	void  open();
-	
 
 public:
 	void drawButtons();
 	void drawPage();
+	
+	QFont buttonFont;
+	QFont noticeFont;
 
 	QList<QPushButton *> buttonList;
+	CoderPostion postion;
+
 
 	QFont font(const QString & qfamily, const QString & qpointSize, const QString & qweight, const QString & qitalic)
 	{

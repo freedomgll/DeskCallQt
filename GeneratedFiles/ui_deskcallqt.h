@@ -27,7 +27,7 @@ public:
     {
         if (DeskCallQTClass->objectName().isEmpty())
             DeskCallQTClass->setObjectName(QStringLiteral("DeskCallQTClass"));
-        DeskCallQTClass->resize(600, 400);
+        DeskCallQTClass->resize(800, 600);
         QSizePolicy sizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);

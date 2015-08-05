@@ -1,5 +1,4 @@
 #include "deskcallqt.h"
-#include "ConfigUtils.h"
 #include "ConfigSql.h"
 #include "FirstPushButton.h"
 
@@ -77,13 +76,10 @@ DeskCallQT::DeskCallQT(QWidget *parent)
 	FirstPushButton * bu = new FirstPushButton("test","c7ab1fe1-b583-40bc-a837-b2d3d060c4d1",100,this);
 	bu->setGeometry(100,100,50,20);
 
-	CoderPostion postion;
-	postion.left = 35;
-	postion.right =95;
-	postion.top = 5;
-	postion.bottom =70;
-	postion.maxRows = 4;
-	postion.space = 15;
+	ConfigUtils::GetCoderPostion(settings, postion);
+	this->buttonFont = ConfigUtils::GetButtonFont(settings);
+	this->noticeFont = ConfigUtils::GetNoticeFont(settings);
+
 
 	QList<QRect> lRects =ConfigUtils::CaculateButtonRects(10,this->width(),this->height(),postion);
 	qDebug() << lRects;
@@ -170,9 +166,7 @@ DeskCallQT::DeskCallQT(QWidget *parent)
 	QRect rect = welcomeLabel->geometry();
 	rect.setX(offIndex);
 
-	QFont font = this->font("Settings/FontName", "Settings/FontSize", "Settings/FontBold", "Settings/FontItalic");
-
-	welcomeLabel->setFont(font);
+	welcomeLabel->setFont(this->noticeFont);
 	offWidth = welcomeLabel->fontMetrics().width(welcomeLabel->text());
 	int offHeight = welcomeLabel->fontMetrics().height();
 

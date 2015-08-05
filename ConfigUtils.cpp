@@ -46,3 +46,23 @@ QList<QRect> ConfigUtils::CaculateButtonRects(int size, int cx, int cy, CoderPos
 
 	return lRects;
 }
+
+void ConfigUtils::GetCoderPostion(QSettings * settings, CoderPostion& postion)
+{
+	postion.left = settings->value("Settings/Left").toInt();
+	postion.right = settings->value("Settings/Right").toInt();
+	postion.top = settings->value("Settings/Top").toInt();
+	postion.bottom = settings->value("Settings/Bottom").toInt();
+	postion.maxRows = settings->value("Settings/MaxRows").toInt();
+	postion.space = settings->value("Settings/ButtonSpace").toInt();
+}
+
+QFont ConfigUtils::GetButtonFont(QSettings * settings)
+{
+	return font(settings,"Settings/FontName", "Settings/FontSize", "Settings/FontBold", "Settings/FontItalic");
+}
+
+QFont ConfigUtils::GetNoticeFont(QSettings * settings)
+{
+	return font(settings,"Settings/FontName2", "Settings/FontSize2", "Settings/FontBold2", "Settings/FontItalic2");
+}
