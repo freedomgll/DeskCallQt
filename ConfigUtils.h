@@ -23,7 +23,7 @@ public:
 	ConfigUtils(void);
 	~ConfigUtils(void);
 
-	static	QFont font(QSettings * settings, const QString & qfamily, const QString & qpointSize, const QString & qweight, const QString & qitalic)
+	static	QFont font(QSettings * settings, const QString & qfamily, const QString & qpointSize, const QString & qweight, const QString & qitalic, const QString & qunderline = "")
 	{
 		QString family = settings->value(qfamily).toString();
 		int pointSize = settings->value(qpointSize).toInt();
@@ -31,6 +31,12 @@ public:
 		bool italic = settings->value(qitalic).toBool();
 
 		QFont font(family, pointSize, weight, italic);
+		if (qunderline != "")
+		{
+			bool underline = settings->value(qunderline).toBool();
+			font.setUnderline(underline);
+		}
+
 		return font;
 	}
 

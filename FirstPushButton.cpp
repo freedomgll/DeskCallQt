@@ -15,6 +15,10 @@ FirstPushButton::FirstPushButton(const QString & text,  QString classid, int lay
 	this->parent = parent;
 	this->classid = classid;
 	connect(this, SIGNAL(clicked()),this,SLOT(print()));
+
+	QString str=QStringLiteral("QPushButton {border-image: url(Resources/%1_up.jpg); color:  %2;} QPushButton:pressed {border-image: url(Resources/%1_down.jpg);} ").arg(QStringLiteral("紫水晶"),"#008000");
+	this->setStyleSheet(str);
+	this->setFont(this->parent->buttonFont);
 }
 
 
@@ -32,9 +36,6 @@ void FirstPushButton::print()
 	bu->setGeometry(100,200,50,20);
 	bu->show();*/
 
-	QList<QRect> lRects =ConfigUtils::CaculateButtonRects(10,this->parent->width(),this->parent->height(),this->parent->postion);
-	qDebug() << lRects;
-
 	ConfigSql confSql = ConfigSql();
 	QList<businessT> businessList =	confSql.queryLBusiness(this->classid);
 
@@ -45,25 +46,15 @@ void FirstPushButton::print()
 
 	businessList.append(business);
 
+	QList<QRect> lRects =ConfigUtils::CaculateButtonRects(businessList.size(),this->parent->width(),this->parent->height(),this->parent->postion);
+	qDebug() << lRects;
+
 	QList<QPushButton *> buttonList;
 
 	for(int i = 0; i < businessList.size(); ++i)
 	 {
-		 QPushButton *pushButton= new SecondPushButton(businessList[i].businessname, businessList[i].businessid, this->parent);  
-  
-		pushButton->setGeometry(lRects[i]); //按钮的位置及大小  
-
-		QString s = QStringLiteral("QPushButton{ background-image: url(Resources/紫水晶_down.jpg); }");
-
-		 /*QString str=QStringLiteral("QPushButton#btn_name{background-image: url(Resources/紫水晶_up.jpg)}" 
-                    "QPushButton#btn_name:hover{background-image: url(:/images/call_hov.bmp);}" 
-                    "QPushButton#btn_name:pressed{background-image: url(Resources/紫水晶_down.jpg);}");*/
-		 QString str=QStringLiteral("QPushButton {background-image: url(Resources/紫水晶_up.jpg); border: none; color: red;} QPushButton:pressed {background-image: url(Resources/紫水晶_down.jpg); border: none;} ");
-		pushButton->setStyleSheet(str);
-		pushButton->setFont(this->parent->buttonFont);
-
-		pushButton->show();
-		buttonList.append(pushButton);
+		 QPushButton *pushButton= new SecondPushButton(businessList[i].businessname, businessList[i].businessid, lRects[i], this->parent);
+		 buttonList.append(pushButton);
 	 }
 
 

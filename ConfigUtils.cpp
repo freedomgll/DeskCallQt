@@ -59,7 +59,7 @@ void ConfigUtils::GetCoderPostion(QSettings * settings, CoderPostion& postion)
 
 QFont ConfigUtils::GetButtonFont(QSettings * settings)
 {
-	return font(settings,"Settings/FontName", "Settings/FontSize", "Settings/FontBold", "Settings/FontItalic");
+	return font(settings,"Settings/FontName", "Settings/FontSize", "Settings/FontBold", "Settings/FontItalic", "Settings/FontUnderline");
 }
 
 QFont ConfigUtils::GetNoticeFont(QSettings * settings)
