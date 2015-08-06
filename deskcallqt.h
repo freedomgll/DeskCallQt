@@ -40,6 +40,7 @@ protected:
 public:
 	void drawButtons();
 	void drawPage();
+	void RecreateButtonList(QList<QPushButton *> buttonList);
 	
 	QFont buttonFont;
 	QFont noticeFont;

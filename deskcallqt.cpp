@@ -73,42 +73,30 @@ DeskCallQT::DeskCallQT(QWidget *parent)
 //Bottom=70
 //MaxRows=4
 
-	FirstPushButton * bu = new FirstPushButton("test","c7ab1fe1-b583-40bc-a837-b2d3d060c4d1",100,this);
-	bu->setGeometry(100,100,50,20);
+	//FirstPushButton * bu = new FirstPushButton("test","32681541-f7db-48d3-b8bb-1a1b6dc0577b",QRect(100,100,50,20),this);
 
 	ConfigUtils::GetCoderPostion(settings, postion);
 	this->buttonFont = ConfigUtils::GetButtonFont(settings);
 	this->noticeFont = ConfigUtils::GetNoticeFont(settings);
 
 
-	QList<QRect> lRects =ConfigUtils::CaculateButtonRects(10,this->width(),this->height(),postion);
+	QList<QRect> lRects =ConfigUtils::CaculateButtonRects(classList.size(),this->width(),this->height(),postion);
 	qDebug() << lRects;
 
 	 QSignalMapper *signalMapper = new QSignalMapper(this);
 
 	 for(int i = 0; i < classList.size(); ++i)
 	 {
-		 DeskPushButton *pushButton= new DeskPushButton(classList[i].classname, classList[i].classid, classList[i].layer, this);  
-  
-		pushButton->setGeometry(lRects[i]); //按钮的位置及大小  
+		 FirstPushButton *pushButton= new FirstPushButton(classList[i].classname, classList[i].classid, lRects[i], this);
 
-		QString s = QStringLiteral("QPushButton{ background-image: url(Resources/紫水晶_down.jpg); }");
 
-		 /*QString str=QStringLiteral("QPushButton#btn_name{background-image: url(Resources/紫水晶_up.jpg)}" 
-                    "QPushButton#btn_name:hover{background-image: url(:/images/call_hov.bmp);}" 
-                    "QPushButton#btn_name:pressed{background-image: url(Resources/紫水晶_down.jpg);}");*/
-		 QString str=QStringLiteral("QPushButton {background-image: url(Resources/紫水晶_up.jpg); border: none; font-family:宋体; font-weight: bold; font-size: 18pt; color: red;} QPushButton:pressed {background-image: url(Resources/紫水晶_down.jpg); border: none;} ");
-		pushButton->setStyleSheet(str);
-
-		//connect(pushButton, SIGNAL(clicked()),this,SLOT(print(i)));
-
-		connect(pushButton, SIGNAL(clicked()), signalMapper, SLOT(map()));
+		/*connect(pushButton, SIGNAL(clicked()), signalMapper, SLOT(map()));
 		signalMapper->setMapping(pushButton,pushButton);
 		
 
-		pushButton->show();
+		pushButton->show();*/
 
-		buttonList.append(pushButton);
+		this->buttonList.append(pushButton);
 	 }
 
 	//for (int i = 0; i < lRects.size(); ++i) {
@@ -135,7 +123,7 @@ DeskCallQT::DeskCallQT(QWidget *parent)
 	//	pushButton->show();
 	//}
 
-	connect(signalMapper, SIGNAL(mapped(QWidget *)), this, SLOT(deskClick(QWidget *)));
+	//connect(signalMapper, SIGNAL(mapped(QWidget *)), this, SLOT(deskClick(QWidget *)));
 
 	this->setObjectName("mainWindow");
 	this->setStyleSheet("#mainWindow { border-image: url(Resources/default2.jpg);}");
@@ -260,4 +248,15 @@ void DeskCallQT::drawWelcome()
 	rect.setX(offIndex);
 	welcomeLabel->setGeometry(rect);
 	
+}
+
+void DeskCallQT::RecreateButtonList(QList<QPushButton *> buttonList)
+{
+	foreach(QPushButton * b,this->buttonList)
+	{
+		delete b;
+	}
+
+	this->buttonList.clear();
+	this->buttonList.append(buttonList);
 }

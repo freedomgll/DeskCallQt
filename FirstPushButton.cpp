@@ -10,15 +10,10 @@ FirstPushButton::FirstPushButton(void)
 {
 }
 
-FirstPushButton::FirstPushButton(const QString & text,  QString classid, int layer,DeskCallQT * parent):QPushButton(text, parent)
+FirstPushButton::FirstPushButton(const QString & text,  QString classid, const QRect & rect,DeskCallQT * parent):CoderPushButton(text, rect, parent)
 {
-	this->parent = parent;
 	this->classid = classid;
 	connect(this, SIGNAL(clicked()),this,SLOT(print()));
-
-	QString str=QStringLiteral("QPushButton {border-image: url(Resources/%1_up.jpg); color:  %2;} QPushButton:pressed {border-image: url(Resources/%1_down.jpg);} ").arg(QStringLiteral("×ÏË®¾§"),"#008000");
-	this->setStyleSheet(str);
-	this->setFont(this->parent->buttonFont);
 }
 
 
@@ -57,14 +52,7 @@ void FirstPushButton::print()
 		 buttonList.append(pushButton);
 	 }
 
-
-	foreach(QPushButton * b,this->parent->buttonList)
-	{
-		delete b;
-	}
-
-	this->parent->buttonList.clear();
-	this->parent->buttonList.append(buttonList);
+	this->parent->RecreateButtonList(buttonList);
 
 	//delete this;
 }

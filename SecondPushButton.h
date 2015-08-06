@@ -1,9 +1,9 @@
 #pragma once
-#include "qpushbutton.h"
+#include "CoderPushButton.h"
 #include "deskcallqt.h"
 
 class SecondPushButton :
-	public QPushButton
+	public CoderPushButton
 {
 public:
 	SecondPushButton(void);
@@ -14,7 +14,6 @@ public slots:
 	void clickAction();
 
 private:
-	DeskCallQT * parent;
 	QString businessId;
 };
 

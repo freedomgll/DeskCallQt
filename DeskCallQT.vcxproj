@@ -78,6 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CoderPushButton.cpp" />
     <ClCompile Include="ConfigSql.cpp" />
     <ClCompile Include="ConfigUtils.cpp" />
     <ClCompile Include="deskcallqt.cpp" />
@@ -150,6 +151,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CoderPushButton.h" />
     <ClInclude Include="SecondPushButton.h" />
     <CustomBuild Include="deskdialog.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
