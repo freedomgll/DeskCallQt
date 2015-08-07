@@ -5,6 +5,8 @@
 class SecondPushButton :
 	public CoderPushButton
 {
+	Q_OBJECT
+
 public:
 	SecondPushButton(void);
 	SecondPushButton(const QString & text,  QString businessId, const QRect & rect, DeskCallQT * parent = 0);

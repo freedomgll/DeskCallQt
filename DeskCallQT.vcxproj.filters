@@ -74,15 +74,6 @@
     <ClCompile Include="ConfigSql.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DeskPushButton.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_DeskPushButton.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_DeskPushButton.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="FirstPushButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -97,6 +88,12 @@
     </ClCompile>
     <ClCompile Include="CoderPushButton.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_SecondPushButton.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_SecondPushButton.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -121,10 +118,10 @@
     <CustomBuild Include="deskdialog.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="DeskPushButton.h">
+    <CustomBuild Include="FirstPushButton.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="FirstPushButton.h">
+    <CustomBuild Include="SecondPushButton.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
@@ -142,9 +139,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ConfigSql.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SecondPushButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CoderPushButton.h">

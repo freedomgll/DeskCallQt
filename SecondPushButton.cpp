@@ -1,5 +1,8 @@
 #include "SecondPushButton.h"
+#include "FirstPushButton.h"
 
+#include <QMessageBox>
+#include <QtDebug>
 
 SecondPushButton::SecondPushButton(void)
 {
@@ -8,8 +11,37 @@ SecondPushButton::SecondPushButton(void)
 SecondPushButton::SecondPushButton(const QString & text,  QString businessId, const QRect & rect, DeskCallQT  * parent):CoderPushButton(text, rect, parent)
 {
 	this->businessId = businessId;
+	connect(this, SIGNAL(clicked()),this,SLOT(clickAction()));
 }
 
 SecondPushButton::~SecondPushButton(void)
 {
+}
+
+void SecondPushButton::clickAction()
+{
+	if(this->text() == QStringLiteral("·µ»Ø/Return"))
+	{
+		ConfigSql confSql = ConfigSql();
+		QList<classT> classList =	confSql.queryLClass();
+
+		QList<QRect> lRects =ConfigUtils::CaculateButtonRects(classList.size(),this->parent->width(),this->parent->height(),this->parent->postion);
+		qDebug() << lRects;
+
+		QList<QPushButton *> buttonList;
+
+		for(int i = 0; i < classList.size(); ++i)
+		 {
+			 QPushButton *pushButton= new FirstPushButton(classList[i].classname, classList[i].classid, lRects[i], this->parent);
+			 buttonList.append(pushButton);
+		 }
+
+		this->parent->RecreateButtonList(buttonList);
+	}
+	else
+	{
+		QMessageBox msgBox;
+		msgBox.setText(this->businessId);
+		msgBox.exec();
+	}
 }

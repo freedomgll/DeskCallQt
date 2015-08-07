@@ -8,7 +8,6 @@
 #include <QPushButton>
 
 #include "ConfigSql.h"
-#include "DeskPushButton.h"
 #include "ConfigUtils.h"
 
 //class MyPushButton : public QPushButton

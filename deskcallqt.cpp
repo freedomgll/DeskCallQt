@@ -1,6 +1,7 @@
 #include "deskcallqt.h"
 #include "ConfigSql.h"
 #include "FirstPushButton.h"
+#include "SecondPushButton.h"
 
 #include <QtWidgets/QLayout>
 #include <QStandardItemModel>
@@ -73,7 +74,7 @@ DeskCallQT::DeskCallQT(QWidget *parent)
 //Bottom=70
 //MaxRows=4
 
-	//FirstPushButton * bu = new FirstPushButton("test","32681541-f7db-48d3-b8bb-1a1b6dc0577b",QRect(100,100,50,20),this);
+	//SecondPushButton * bu = new SecondPushButton("test","32681541-f7db-48d3-b8bb-1a1b6dc0577b",QRect(100,100,50,20),this);
 
 	ConfigUtils::GetCoderPostion(settings, postion);
 	this->buttonFont = ConfigUtils::GetButtonFont(settings);
@@ -87,7 +88,7 @@ DeskCallQT::DeskCallQT(QWidget *parent)
 
 	 for(int i = 0; i < classList.size(); ++i)
 	 {
-		 FirstPushButton *pushButton= new FirstPushButton(classList[i].classname, classList[i].classid, lRects[i], this);
+		 QPushButton *pushButton= new FirstPushButton(classList[i].classname, classList[i].classid, lRects[i], this);
 
 
 		/*connect(pushButton, SIGNAL(clicked()), signalMapper, SLOT(map()));
@@ -207,7 +208,7 @@ void DeskCallQT::print(int id)
 
 void DeskCallQT::deskClick(QWidget * b)
 {
-	DeskPushButton *desk = qobject_cast<DeskPushButton*>(b);
+	/*DeskPushButton *desk = qobject_cast<DeskPushButton*>(b);
 	if(desk->layer == 1)
 	{
 		QString id = desk->id;
@@ -221,7 +222,7 @@ void DeskCallQT::deskClick(QWidget * b)
 		businessList.clear();
 		businessList = confSql.queryLBusiness(id);
 	}
-
+*/
 	/*QMessageBox msgBox;
 	msgBox.setText(desk->id);
 	msgBox.exec();
