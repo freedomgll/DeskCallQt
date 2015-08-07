@@ -1,4 +1,5 @@
 #include "deskcallqt.h"
+#include "desksettings.h"
 #include "ConfigSql.h"
 #include "FirstPushButton.h"
 #include "SecondPushButton.h"
@@ -188,15 +189,18 @@ void DeskCallQT::open()
 
 void DeskCallQT::config()
 {
-	bool ok;
+	//bool ok;
 
-	QFont font = this->font("Settings/FontName", "Settings/FontSize", "Settings/FontBold", "Settings/FontItalic");
-	font = QFontDialog::getFont(&ok, font, this);
+	//QFont font = this->font("Settings/FontName", "Settings/FontSize", "Settings/FontBold", "Settings/FontItalic");
+	//font = QFontDialog::getFont(&ok, font, this);
 
-	if (ok) {
-		// font is set to the font the user selected
-		this->setFont(font, "Settings/FontName", "Settings/FontSize", "Settings/FontBold", "Settings/FontItalic");
-	} 
+	//if (ok) {
+	//	// font is set to the font the user selected
+	//	this->setFont(font, "Settings/FontName", "Settings/FontSize", "Settings/FontBold", "Settings/FontItalic");
+	//} 
+
+	DeskSettings w;
+	w.exec();
 }
 
 void DeskCallQT::print(int id)

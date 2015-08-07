@@ -95,6 +95,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_SecondPushButton.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="desksettings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_desksettings.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_desksettings.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="deskcallqt.h">
@@ -124,6 +133,12 @@
     <CustomBuild Include="SecondPushButton.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="desksettings.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="desksettings.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_deskcallqt.h">
@@ -143,6 +158,9 @@
     </ClInclude>
     <ClInclude Include="CoderPushButton.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_desksettings.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
