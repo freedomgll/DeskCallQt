@@ -46,6 +46,7 @@ public:
 
 	QList<QPushButton *> buttonList;
 	CoderPostion postion;
+	QSettings * settings;
 
 
 	QFont font(const QString & qfamily, const QString & qpointSize, const QString & qweight, const QString & qitalic)
@@ -80,8 +81,6 @@ private:
 
 	QLabel * noticeLabel;
 	QLabel * welcomeLabel;
-	
-	QSettings * settings;
 
 	int offIndex;
 	int offWidth;

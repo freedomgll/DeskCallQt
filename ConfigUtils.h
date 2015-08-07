@@ -50,6 +50,7 @@ public:
 
 	static QList<QRect> CaculateButtonRects(int size, int width, int height, CoderPostion postion);
 	static void GetCoderPostion(QSettings * settings, CoderPostion& postion);
+	static void SetCoderPostion(QSettings * settings, CoderPostion& postion);
 	static QFont GetButtonFont(QSettings * settings);
 	static QFont GetNoticeFont(QSettings * settings);
 };

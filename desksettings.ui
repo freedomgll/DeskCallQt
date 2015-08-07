@@ -18,13 +18,13 @@
   <property name="windowTitle">
    <string>选项</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>10</y>
      <width>481</width>
-     <height>501</height>
+     <height>503</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -64,7 +64,7 @@
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="lineEdit">
+          <widget class="QLineEdit" name="lineEditTop">
            <property name="inputMethodHints">
             <set>Qt::ImhNone</set>
            </property>
@@ -81,7 +81,7 @@
           </widget>
          </item>
          <item row="0" column="3">
-          <widget class="QLineEdit" name="lineEdit_2"/>
+          <widget class="QLineEdit" name="lineEditBottom"/>
          </item>
          <item row="0" column="4">
           <widget class="QLabel" name="label_5">
@@ -91,10 +91,10 @@
           </widget>
          </item>
          <item row="0" column="5">
-          <widget class="QLineEdit" name="lineEdit_5"/>
+          <widget class="QLineEdit" name="lineEditMaxRow"/>
          </item>
          <item row="0" column="6">
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="pushButtonPostion">
            <property name="text">
             <string>调整</string>
            </property>
@@ -108,7 +108,7 @@
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLineEdit" name="lineEdit_3"/>
+          <widget class="QLineEdit" name="lineEditLeft"/>
          </item>
          <item row="1" column="2">
           <widget class="QLabel" name="label_3">
@@ -118,7 +118,7 @@
           </widget>
          </item>
          <item row="1" column="3">
-          <widget class="QLineEdit" name="lineEdit_4"/>
+          <widget class="QLineEdit" name="lineEditRight"/>
          </item>
          <item row="1" column="4">
           <widget class="QLabel" name="label_6">
@@ -128,7 +128,7 @@
           </widget>
          </item>
          <item row="1" column="5">
-          <widget class="QLineEdit" name="lineEdit_6"/>
+          <widget class="QLineEdit" name="lineEditSpace"/>
          </item>
         </layout>
        </item>
@@ -223,20 +223,6 @@
         </layout>
        </item>
       </layout>
-      <zorder>label_3</zorder>
-      <zorder>label_2</zorder>
-      <zorder>label</zorder>
-      <zorder>lineEdit</zorder>
-      <zorder>lineEdit_2</zorder>
-      <zorder>lineEdit_3</zorder>
-      <zorder>lineEdit_4</zorder>
-      <zorder>label_5</zorder>
-      <zorder>label_6</zorder>
-      <zorder>lineEdit_5</zorder>
-      <zorder>lineEdit_6</zorder>
-      <zorder>label_4</zorder>
-      <zorder>pushButton</zorder>
-      <zorder>splitter</zorder>
      </widget>
     </item>
     <item>

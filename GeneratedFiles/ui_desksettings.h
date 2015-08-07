@@ -31,24 +31,24 @@ QT_BEGIN_NAMESPACE
 class Ui_DeskSettings
 {
 public:
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout_3;
     QGroupBox *groupBox;
     QVBoxLayout *verticalLayout;
     QGridLayout *gridLayout;
     QLabel *label;
-    QLineEdit *lineEdit;
+    QLineEdit *lineEditTop;
     QLabel *label_2;
-    QLineEdit *lineEdit_2;
+    QLineEdit *lineEditBottom;
     QLabel *label_5;
-    QLineEdit *lineEdit_5;
-    QPushButton *pushButton;
+    QLineEdit *lineEditMaxRow;
+    QPushButton *pushButtonPostion;
     QLabel *label_4;
-    QLineEdit *lineEdit_3;
+    QLineEdit *lineEditLeft;
     QLabel *label_3;
-    QLineEdit *lineEdit_4;
+    QLineEdit *lineEditRight;
     QLabel *label_6;
-    QLineEdit *lineEdit_6;
+    QLineEdit *lineEditSpace;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer;
     QPushButton *pushButton_2;
@@ -123,15 +123,15 @@ public:
         QFont font;
         font.setFamily(QString::fromUtf8("\346\226\260\345\256\213\344\275\223"));
         DeskSettings->setFont(font);
-        widget = new QWidget(DeskSettings);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 10, 481, 501));
-        verticalLayout_3 = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(DeskSettings);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 10, 481, 503));
+        verticalLayout_3 = new QVBoxLayout(layoutWidget);
         verticalLayout_3->setSpacing(3);
         verticalLayout_3->setContentsMargins(11, 11, 11, 11);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
-        groupBox = new QGroupBox(widget);
+        groupBox = new QGroupBox(layoutWidget);
         groupBox->setObjectName(QStringLiteral("groupBox"));
         QFont font1;
         font1.setFamily(QString::fromUtf8("\345\256\213\344\275\223"));
@@ -150,66 +150,66 @@ public:
 
         gridLayout->addWidget(label, 0, 0, 1, 1);
 
-        lineEdit = new QLineEdit(groupBox);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setInputMethodHints(Qt::ImhNone);
+        lineEditTop = new QLineEdit(groupBox);
+        lineEditTop->setObjectName(QStringLiteral("lineEditTop"));
+        lineEditTop->setInputMethodHints(Qt::ImhNone);
 
-        gridLayout->addWidget(lineEdit, 0, 1, 1, 1);
+        gridLayout->addWidget(lineEditTop, 0, 1, 1, 1);
 
         label_2 = new QLabel(groupBox);
         label_2->setObjectName(QStringLiteral("label_2"));
 
         gridLayout->addWidget(label_2, 0, 2, 1, 1);
 
-        lineEdit_2 = new QLineEdit(groupBox);
-        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
+        lineEditBottom = new QLineEdit(groupBox);
+        lineEditBottom->setObjectName(QStringLiteral("lineEditBottom"));
 
-        gridLayout->addWidget(lineEdit_2, 0, 3, 1, 1);
+        gridLayout->addWidget(lineEditBottom, 0, 3, 1, 1);
 
         label_5 = new QLabel(groupBox);
         label_5->setObjectName(QStringLiteral("label_5"));
 
         gridLayout->addWidget(label_5, 0, 4, 1, 1);
 
-        lineEdit_5 = new QLineEdit(groupBox);
-        lineEdit_5->setObjectName(QStringLiteral("lineEdit_5"));
+        lineEditMaxRow = new QLineEdit(groupBox);
+        lineEditMaxRow->setObjectName(QStringLiteral("lineEditMaxRow"));
 
-        gridLayout->addWidget(lineEdit_5, 0, 5, 1, 1);
+        gridLayout->addWidget(lineEditMaxRow, 0, 5, 1, 1);
 
-        pushButton = new QPushButton(groupBox);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButtonPostion = new QPushButton(groupBox);
+        pushButtonPostion->setObjectName(QStringLiteral("pushButtonPostion"));
 
-        gridLayout->addWidget(pushButton, 0, 6, 1, 1);
+        gridLayout->addWidget(pushButtonPostion, 0, 6, 1, 1);
 
         label_4 = new QLabel(groupBox);
         label_4->setObjectName(QStringLiteral("label_4"));
 
         gridLayout->addWidget(label_4, 1, 0, 1, 1);
 
-        lineEdit_3 = new QLineEdit(groupBox);
-        lineEdit_3->setObjectName(QStringLiteral("lineEdit_3"));
+        lineEditLeft = new QLineEdit(groupBox);
+        lineEditLeft->setObjectName(QStringLiteral("lineEditLeft"));
 
-        gridLayout->addWidget(lineEdit_3, 1, 1, 1, 1);
+        gridLayout->addWidget(lineEditLeft, 1, 1, 1, 1);
 
         label_3 = new QLabel(groupBox);
         label_3->setObjectName(QStringLiteral("label_3"));
 
         gridLayout->addWidget(label_3, 1, 2, 1, 1);
 
-        lineEdit_4 = new QLineEdit(groupBox);
-        lineEdit_4->setObjectName(QStringLiteral("lineEdit_4"));
+        lineEditRight = new QLineEdit(groupBox);
+        lineEditRight->setObjectName(QStringLiteral("lineEditRight"));
 
-        gridLayout->addWidget(lineEdit_4, 1, 3, 1, 1);
+        gridLayout->addWidget(lineEditRight, 1, 3, 1, 1);
 
         label_6 = new QLabel(groupBox);
         label_6->setObjectName(QStringLiteral("label_6"));
 
         gridLayout->addWidget(label_6, 1, 4, 1, 1);
 
-        lineEdit_6 = new QLineEdit(groupBox);
-        lineEdit_6->setObjectName(QStringLiteral("lineEdit_6"));
+        lineEditSpace = new QLineEdit(groupBox);
+        lineEditSpace->setObjectName(QStringLiteral("lineEditSpace"));
 
-        gridLayout->addWidget(lineEdit_6, 1, 5, 1, 1);
+        gridLayout->addWidget(lineEditSpace, 1, 5, 1, 1);
 
 
         verticalLayout->addLayout(gridLayout);
@@ -255,23 +255,10 @@ public:
 
         verticalLayout->addLayout(horizontalLayout);
 
-        label_3->raise();
-        label_2->raise();
-        label->raise();
-        lineEdit->raise();
-        lineEdit_2->raise();
-        lineEdit_3->raise();
-        lineEdit_4->raise();
-        label_5->raise();
-        label_6->raise();
-        lineEdit_5->raise();
-        lineEdit_6->raise();
-        label_4->raise();
-        pushButton->raise();
 
         verticalLayout_3->addWidget(groupBox);
 
-        groupBox_2 = new QGroupBox(widget);
+        groupBox_2 = new QGroupBox(layoutWidget);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
         verticalLayout_2 = new QVBoxLayout(groupBox_2);
         verticalLayout_2->setSpacing(0);
@@ -322,7 +309,7 @@ public:
 
         verticalLayout_3->addWidget(groupBox_2);
 
-        groupBox_3 = new QGroupBox(widget);
+        groupBox_3 = new QGroupBox(layoutWidget);
         groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
         verticalLayout_4 = new QVBoxLayout(groupBox_3);
         verticalLayout_4->setSpacing(6);
@@ -412,7 +399,7 @@ public:
 
         verticalLayout_3->addWidget(groupBox_3);
 
-        groupBox_4 = new QGroupBox(widget);
+        groupBox_4 = new QGroupBox(layoutWidget);
         groupBox_4->setObjectName(QStringLiteral("groupBox_4"));
         verticalLayout_6 = new QVBoxLayout(groupBox_4);
         verticalLayout_6->setSpacing(0);
@@ -453,7 +440,7 @@ public:
 
         verticalLayout_3->addWidget(groupBox_4);
 
-        groupBox_5 = new QGroupBox(widget);
+        groupBox_5 = new QGroupBox(layoutWidget);
         groupBox_5->setObjectName(QStringLiteral("groupBox_5"));
         verticalLayout_7 = new QVBoxLayout(groupBox_5);
         verticalLayout_7->setSpacing(6);
@@ -503,7 +490,7 @@ public:
 
         verticalLayout_3->addWidget(groupBox_5);
 
-        groupBox_6 = new QGroupBox(widget);
+        groupBox_6 = new QGroupBox(layoutWidget);
         groupBox_6->setObjectName(QStringLiteral("groupBox_6"));
         verticalLayout_8 = new QVBoxLayout(groupBox_6);
         verticalLayout_8->setSpacing(0);
@@ -532,7 +519,7 @@ public:
         horizontalLayout_5->setSpacing(0);
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
         horizontalLayout_5->setContentsMargins(9, -1, 9, -1);
-        pushButton_15 = new QPushButton(widget);
+        pushButton_15 = new QPushButton(layoutWidget);
         pushButton_15->setObjectName(QStringLiteral("pushButton_15"));
 
         horizontalLayout_5->addWidget(pushButton_15);
@@ -541,12 +528,12 @@ public:
 
         horizontalLayout_5->addItem(horizontalSpacer_10);
 
-        pushButton_16 = new QPushButton(widget);
+        pushButton_16 = new QPushButton(layoutWidget);
         pushButton_16->setObjectName(QStringLiteral("pushButton_16"));
 
         horizontalLayout_5->addWidget(pushButton_16);
 
-        pushButton_17 = new QPushButton(widget);
+        pushButton_17 = new QPushButton(layoutWidget);
         pushButton_17->setObjectName(QStringLiteral("pushButton_17"));
 
         horizontalLayout_5->addWidget(pushButton_17);
@@ -565,10 +552,10 @@ public:
         DeskSettings->setWindowTitle(QApplication::translate("DeskSettings", "\351\200\211\351\241\271", 0));
         groupBox->setTitle(QApplication::translate("DeskSettings", "\346\214\211\351\222\256\350\260\203\346\225\264", 0));
         label->setText(QApplication::translate("DeskSettings", "\344\270\212", 0));
-        lineEdit->setInputMask(QString());
+        lineEditTop->setInputMask(QString());
         label_2->setText(QApplication::translate("DeskSettings", "\344\270\213", 0));
         label_5->setText(QApplication::translate("DeskSettings", "\346\234\200\345\244\247\350\241\214\346\225\260", 0));
-        pushButton->setText(QApplication::translate("DeskSettings", "\350\260\203\346\225\264", 0));
+        pushButtonPostion->setText(QApplication::translate("DeskSettings", "\350\260\203\346\225\264", 0));
         label_4->setText(QApplication::translate("DeskSettings", "\345\267\246", 0));
         label_3->setText(QApplication::translate("DeskSettings", "\345\217\263", 0));
         label_6->setText(QApplication::translate("DeskSettings", "\351\227\264\350\267\235", 0));

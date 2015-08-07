@@ -175,6 +175,9 @@ DeskCallQT::DeskCallQT(QWidget *parent)
 	QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(drawWelcome()));
     timer->start(100);
+
+	DeskSettings w(this);
+	w.exec();
 }
 
 DeskCallQT::~DeskCallQT()
@@ -199,7 +202,7 @@ void DeskCallQT::config()
 	//	this->setFont(font, "Settings/FontName", "Settings/FontSize", "Settings/FontBold", "Settings/FontItalic");
 	//} 
 
-	DeskSettings w;
+	DeskSettings w(this);
 	w.exec();
 }
 

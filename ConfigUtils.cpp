@@ -57,6 +57,16 @@ void ConfigUtils::GetCoderPostion(QSettings * settings, CoderPostion& postion)
 	postion.space = settings->value("Settings/ButtonSpace").toInt();
 }
 
+void ConfigUtils::SetCoderPostion(QSettings * settings, CoderPostion& postion)
+{
+	settings->setValue("Settings/Left", postion.left);
+	settings->setValue("Settings/Right",postion.right);
+	settings->setValue("Settings/Top",postion.top);
+	settings->setValue("Settings/Bottom",postion.bottom);
+	settings->setValue("Settings/MaxRows",postion.maxRows);
+	settings->setValue("Settings/ButtonSpace",postion.space);
+}
+
 QFont ConfigUtils::GetButtonFont(QSettings * settings)
 {
 	return font(settings,"Settings/FontName", "Settings/FontSize", "Settings/FontBold", "Settings/FontItalic", "Settings/FontUnderline");
