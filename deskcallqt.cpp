@@ -17,6 +17,7 @@
 #include <QLabel>
 #include <QTimer>
 #include <QTextCodec>
+#include <QFileDialog>
 
 static bool createConnection()
 {
@@ -46,18 +47,6 @@ DeskCallQT::DeskCallQT(QWidget *parent)
 {
 	ui.setupUi(this);
 
-	settings = new QSettings("Resources/Coder.ini", QSettings::IniFormat);
-	settings->setIniCodec(QTextCodec::codecForName("GBK"));
-
-	bool b =settings->value("Settings/PrintMode").toBool();
-
-	createConnection();
-
-	this->confSql = ConfigSql();
-	classList =	confSql.queryLClass();
-
-	offIndex = this->width();
-
 	Qt::WindowFlags flags=Qt::Dialog;
 
     flags |=Qt::WindowMinMaxButtonsHint;
@@ -66,40 +55,8 @@ DeskCallQT::DeskCallQT(QWidget *parent)
 
 	//showFullScreen();
 
-	qDebug() << this->width();
-	qDebug() << this->height();
 
-//	Left=35
-//Right=95
-//Top=5
-//Bottom=70
-//MaxRows=4
-
-	//SecondPushButton * bu = new SecondPushButton("test","32681541-f7db-48d3-b8bb-1a1b6dc0577b",QRect(100,100,50,20),this);
-
-	ConfigUtils::GetCoderPostion(settings, postion);
-	this->buttonFont = ConfigUtils::GetButtonFont(settings);
-	this->noticeFont = ConfigUtils::GetNoticeFont(settings);
-
-
-	QList<QRect> lRects =ConfigUtils::CaculateButtonRects(classList.size(),this->width(),this->height(),postion);
-	qDebug() << lRects;
-
-	 QSignalMapper *signalMapper = new QSignalMapper(this);
-
-	 for(int i = 0; i < classList.size(); ++i)
-	 {
-		 QPushButton *pushButton= new FirstPushButton(classList[i].classname, classList[i].classid, lRects[i], this);
-
-
-		/*connect(pushButton, SIGNAL(clicked()), signalMapper, SLOT(map()));
-		signalMapper->setMapping(pushButton,pushButton);
-		
-
-		pushButton->show();*/
-
-		this->buttonList.append(pushButton);
-	 }
+	offIndex = this->width();
 
 	//for (int i = 0; i < lRects.size(); ++i) {
  //   
@@ -127,15 +84,6 @@ DeskCallQT::DeskCallQT(QWidget *parent)
 
 	//connect(signalMapper, SIGNAL(mapped(QWidget *)), this, SLOT(deskClick(QWidget *)));
 
-	this->setObjectName("mainWindow");
-	this->setStyleSheet("#mainWindow { border-image: url(Resources/default2.jpg);}");
-
-	QObjectList  l = this->children();
-
-	foreach ( QObject *b, l)
-	{
-		//delete b;
-	}
 
 	//bool ok;
 	//QFont font = QFontDialog::getFont(&ok, QFont("Times", 12), this);
@@ -145,6 +93,50 @@ DeskCallQT::DeskCallQT(QWidget *parent)
 	//	// the user canceled the dialog; font is set to the initial
 	//	// value, in this case Times, 12.
 	//}
+
+	
+	QShortcut * shortcut = new QShortcut(QKeySequence("Ctrl+O"), this);
+	connect(shortcut, SIGNAL(activated()), this, SLOT(config()));
+
+	QTimer *timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(drawWelcome()));
+    timer->start(100);
+
+	/*DeskSettings w(this);
+	w.exec();*/
+
+	/*QStringList filters;
+	filters << QStringLiteral("Í¼Æ¬ÎÄ¼þ (*_up.jpg)");
+
+	QFileDialog dialog(this);
+	dialog.setDirectory(".\\Resources");
+	dialog.setNameFilters(filters);
+	dialog.exec();*/
+	initDialog();
+}
+
+DeskCallQT::~DeskCallQT()
+{
+
+}
+
+void DeskCallQT::initDialog()
+{
+	this->settings = new QSettings("Resources/Coder.ini", QSettings::IniFormat);
+	this->settings->setIniCodec(QTextCodec::codecForName("GBK"));
+
+	createConnection();
+
+	this->setObjectName("mainWindow");
+	this->setStyleSheet("#mainWindow { border-image: url(Resources/default2.jpg);}");
+
+	
+	this->confSql = ConfigSql();
+	classList =	confSql.queryLClass();
+
+		ConfigUtils::GetCoderPostion(settings, postion);
+	this->buttonFont = ConfigUtils::GetButtonFont(settings);
+	this->noticeFont = ConfigUtils::GetNoticeFont(settings);
 
 	welcomeLabel = new QLabel(this);
 	//label->setFrameStyle(QFrame::Panel | QFrame::Sunken);
@@ -165,23 +157,25 @@ DeskCallQT::DeskCallQT(QWidget *parent)
 	welcomeLabel->setGeometry(rect);
 
 
-	settings->value("Settings/PrintMode").toBool();
+	QList<QRect> lRects =ConfigUtils::CaculateButtonRects(classList.size(),this->width(),this->height(),postion);
+	qDebug() << lRects;
+
+	 QSignalMapper *signalMapper = new QSignalMapper(this);
+
+	 for(int i = 0; i < classList.size(); ++i)
+	 {
+		 QPushButton *pushButton= new FirstPushButton(classList[i].classname, classList[i].classid, lRects[i], this);
 
 
-	
-	QShortcut * shortcut = new QShortcut(QKeySequence("Ctrl+O"), this);
-	connect(shortcut, SIGNAL(activated()), this, SLOT(config()));
+		/*connect(pushButton, SIGNAL(clicked()), signalMapper, SLOT(map()));
+		signalMapper->setMapping(pushButton,pushButton);
+		
 
-	QTimer *timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(drawWelcome()));
-    timer->start(100);
+		pushButton->show();*/
 
-	DeskSettings w(this);
-	w.exec();
-}
+		this->buttonList.append(pushButton);
+	 }
 
-DeskCallQT::~DeskCallQT()
-{
 
 }
 

@@ -68,6 +68,8 @@ public:
 		settings->setValue(qitalic, font.italic());	
 	}
 
+	void initDialog();
+
 		
 public slots:
 	void  config();
