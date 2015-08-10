@@ -33,6 +33,9 @@ DeskSettings::DeskSettings(DeskCallQT *parent)
 	connect(ui.pushButtonBGP, SIGNAL(clicked()), this, SLOT(clickButtonBGP()));
 	connect(ui.pushButtonFont, SIGNAL(clicked()), this, SLOT(clickButtonFont()));
 	connect(ui.pushButtonColor, SIGNAL(clicked()), this, SLOT(clickButtonColor()));
+
+	connect(ui.pushBackPic, SIGNAL(clicked()), this, SLOT(clickBackPic()));
+	connect(ui.pushBackFont, SIGNAL(clicked()), this, SLOT(clickBackFont()));
 }
 
 DeskSettings::~DeskSettings()
@@ -105,6 +108,47 @@ void DeskSettings::clickButtonFont()
 }
 
 void DeskSettings::clickButtonColor()
+{
+	QColor color = QColorDialog::getColor(parent->configSettings.buttonColor, this);
+
+	if(color.isValid())
+	{
+		parent->configSettings.buttonColor = color;
+		parent->settings->setValue("Settings/FontColor", color.name());
+	}
+}
+
+
+void DeskSettings::clickBackPic()
+{
+	QString fileName = QFileDialog::getOpenFileName(this, QStringLiteral("打开文件"),
+                                                "./Resources",
+                                                QStringLiteral("图片文件 (*.jpg)"));
+	if(!fileName.isEmpty())
+	{
+		fileName = QFileInfo(fileName).fileName();
+		qDebug() << fileName;
+		parent->configSettings.backPic=fileName;
+		parent->settings->setValue("Settings/BackPic", parent->configSettings.backPic);
+
+		parent->drawDialog();
+	}
+}
+
+void DeskSettings::clickBackFont()
+{
+	bool ok;
+
+	QFont font = QFontDialog::getFont(&ok, parent->configSettings.noticeFont, this);
+
+	if (ok) {
+		// font is set to the font the user selected
+		parent->configSettings.noticeFont = font;
+		ConfigUtils::setFont(parent->settings,parent->configSettings.noticeFont,"Settings/FontName2", "Settings/FontSize2", "Settings/FontBold2", "Settings/FontItalic2","Settings/FontUnderline2");
+	} 
+}
+
+void DeskSettings::clickBackColor()
 {
 	QColor color = QColorDialog::getColor(parent->configSettings.buttonColor, this);
 

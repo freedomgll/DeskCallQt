@@ -74,7 +74,7 @@ QFont ConfigUtils::GetButtonFont(QSettings * settings)
 
 QFont ConfigUtils::GetNoticeFont(QSettings * settings)
 {
-	return font(settings,"Settings/FontName2", "Settings/FontSize2", "Settings/FontBold2", "Settings/FontItalic2");
+	return font(settings,"Settings/FontName2", "Settings/FontSize2", "Settings/FontBold2", "Settings/FontItalic2", "Settings/FontUnderline2");
 }
 
 QColor ConfigUtils::GetButtonColor(QSettings * settings)
@@ -90,4 +90,7 @@ void ConfigUtils::LoadConfigSettings(QSettings * settings, ConfigSettings & conf
 
 	configSettings.buttonPic = settings->value("Settings/ButtonFace").toString();
 	configSettings.buttonColor = ConfigUtils::GetButtonColor(settings);
+
+	configSettings.sub = settings->value("Settings/Sub").toString();
+	configSettings.backPic = settings->value("Settings/BackPic").toString();
 }

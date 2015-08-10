@@ -422,12 +422,12 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_5">
          <item>
-          <widget class="QLineEdit" name="lineEdit_14"/>
+          <widget class="QLineEdit" name="lineEditSub"/>
          </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_3">
            <item>
-            <widget class="QPushButton" name="pushButton_10">
+            <widget class="QPushButton" name="pushBackFont">
              <property name="text">
               <string>设置字幕字体&gt;&gt;</string>
              </property>
@@ -571,7 +571,7 @@
        <number>9</number>
       </property>
       <item>
-       <widget class="QPushButton" name="pushButton_15">
+       <widget class="QPushButton" name="pushBackPic">
         <property name="text">
          <string>设置背景图片&gt;&gt;</string>
         </property>

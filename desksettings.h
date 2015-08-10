@@ -22,6 +22,10 @@ public slots:
 	void clickButtonFont();
 	void clickButtonColor();
 
+	void clickBackPic();
+	void clickBackFont();
+	void clickBackColor();
+
 private:
 	Ui::DeskSettings ui;
 

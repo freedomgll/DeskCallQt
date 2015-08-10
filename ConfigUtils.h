@@ -26,6 +26,8 @@ public:
 	CoderPostion postion;
 	QString buttonPic;
 	QColor buttonColor;
+	QString sub;
+	QString backPic;
 };
 
 class ConfigUtils

@@ -128,39 +128,15 @@ void DeskCallQT::initDialog()
 	createConnection();
 
 	this->setObjectName("mainWindow");
-	this->setStyleSheet("#mainWindow { border-image: url(Resources/default2.jpg);}");
-
 	
 	this->confSql = ConfigSql();
 	classList =	confSql.queryLClass();
 
 	ConfigUtils::GetCoderPostion(settings, postion);
-	ConfigUtils::GetCoderPostion(settings, this->configSettings.postion);
-	this->configSettings.buttonFont = ConfigUtils::GetButtonFont(settings);
-	this->configSettings.noticeFont = ConfigUtils::GetNoticeFont(settings);
-
-	this->configSettings.buttonPic = this->settings->value("Settings/ButtonFace").toString();
-	this->configSettings.buttonColor = ConfigUtils::GetButtonColor(settings);
 
 	welcomeLabel = new QLabel(this);
 	//label->setFrameStyle(QFrame::Panel | QFrame::Sunken);
-	welcomeLabel->setText(QStringLiteral("欢迎使用排队系统"));
-	//welcomeLabel->setAlignment(Qt::AlignJustify);
-	//welcomeLabel->setStyleSheet("QLabel {font-family:宋体; font-weight: bold; font-size: 18pt; color: red;}");
-	welcomeLabel->setStyleSheet("QLabel {color: #008000;}");
-	//welcomeLabel->setGeometry(offIndex,100,300,welcomeLabel->height());
-	QRect rect = welcomeLabel->geometry();
-	rect.setX(offIndex);
-
-	welcomeLabel->setFont(this->configSettings.noticeFont);
-	offWidth = welcomeLabel->fontMetrics().width(welcomeLabel->text());
-	int offHeight = welcomeLabel->fontMetrics().height();
-
-	rect.setHeight(offHeight);
-
-	welcomeLabel->setGeometry(rect);
-
-
+	
 	QList<QRect> lRects =ConfigUtils::CaculateButtonRects(classList.size(),this->width(),this->height(),postion);
 	qDebug() << lRects;
 
@@ -180,6 +156,7 @@ void DeskCallQT::initDialog()
 		this->buttonList.append(pushButton);
 	 }
 
+	 drawDialog();
 
 }
 
@@ -187,8 +164,10 @@ void DeskCallQT::drawDialog()
 {
 	ConfigUtils::LoadConfigSettings(settings, configSettings);
 
+	this->setStyleSheet(QString("#mainWindow { border-image: url(Resources/%1);}").arg(configSettings.backPic));
 
-	QList<QRect> lRects =ConfigUtils::CaculateButtonRects(classList.size(),this->width(),this->height(),configSettings.postion);
+
+	QList<QRect> lRects =ConfigUtils::CaculateButtonRects(this->buttonList.size(),this->width(),this->height(),configSettings.postion);
 
 	 for(int i = 0; i < this->buttonList.size(); ++i)
 	 {
@@ -197,6 +176,19 @@ void DeskCallQT::drawDialog()
 
 		 pushButton->setButtonStyle();
 	 }
+
+	 welcomeLabel->setText(configSettings.sub);
+	welcomeLabel->setStyleSheet("QLabel {color: #008000;}");
+	QRect rect = welcomeLabel->geometry();
+	rect.setX(offIndex);
+
+	welcomeLabel->setFont(this->configSettings.noticeFont);
+	offWidth = welcomeLabel->fontMetrics().width(welcomeLabel->text());
+	int offHeight = welcomeLabel->fontMetrics().height();
+
+	rect.setHeight(offHeight);
+
+	welcomeLabel->setGeometry(rect);
 }
 
 void DeskCallQT::open()
