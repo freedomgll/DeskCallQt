@@ -9,6 +9,7 @@
 
 #include "ConfigSql.h"
 #include "ConfigUtils.h"
+#include "CoderPushButton.h"
 
 class DeskCallQT : public QDialog
 {
@@ -25,12 +26,12 @@ protected:
 public:
 	void drawButtons();
 	void drawPage();
-	void RecreateButtonList(QList<QPushButton *> buttonList);
+	void RecreateButtonList(QList<CoderPushButton *> buttonList);
 	
 	QFont buttonFont;
 	QFont noticeFont;
 
-	QList<QPushButton *> buttonList;
+	QList<CoderPushButton *> buttonList;
 	CoderPostion postion;
 	QSettings * settings;
 

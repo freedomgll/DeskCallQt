@@ -1,6 +1,10 @@
 #pragma once
+#ifndef CODERPUSHBUTTON_H
+#define CODERPUSHBUTTON_H
+
 #include "qpushbutton.h"
-#include "deskcallqt.h"
+
+class DeskCallQT;
 
 class CoderPushButton :
 	public QPushButton
@@ -17,4 +21,6 @@ protected:
 
 	//void RecreateButtonList(QList<CoderPushButton *> buttonList);
 };
+
+#endif // CODERPUSHBUTTON_H
 

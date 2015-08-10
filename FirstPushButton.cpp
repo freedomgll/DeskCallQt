@@ -44,11 +44,11 @@ void FirstPushButton::print()
 	QList<QRect> lRects =ConfigUtils::CaculateButtonRects(businessList.size(),this->parent->width(),this->parent->height(),this->parent->postion);
 	qDebug() << lRects;
 
-	QList<QPushButton *> buttonList;
+	QList<CoderPushButton *> buttonList;
 
 	for(int i = 0; i < businessList.size(); ++i)
 	 {
-		 QPushButton *pushButton= new SecondPushButton(businessList[i].businessname, businessList[i].businessid, lRects[i], this->parent);
+		 CoderPushButton *pushButton= new SecondPushButton(businessList[i].businessname, businessList[i].businessid, lRects[i], this->parent);
 		 buttonList.append(pushButton);
 	 }
 

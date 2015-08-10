@@ -192,10 +192,10 @@ void DeskCallQT::drawDialog()
 
 	 for(int i = 0; i < this->buttonList.size(); ++i)
 	 {
-		 QPushButton* pushButton = this->buttonList[i];
+		 CoderPushButton* pushButton = this->buttonList[i];
 		 pushButton->setGeometry(lRects[i]);
 
-		 //pushButton->setButtonStyle();
+		 pushButton->setButtonStyle();
 	 }
 }
 
@@ -272,7 +272,7 @@ void DeskCallQT::drawWelcome()
 	
 }
 
-void DeskCallQT::RecreateButtonList(QList<QPushButton *> buttonList)
+void DeskCallQT::RecreateButtonList(QList<CoderPushButton *> buttonList)
 {
 	foreach(QPushButton * b,this->buttonList)
 	{
