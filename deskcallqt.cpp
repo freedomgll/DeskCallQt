@@ -178,7 +178,7 @@ void DeskCallQT::drawDialog()
 	 }
 
 	 welcomeLabel->setText(configSettings.sub);
-	welcomeLabel->setStyleSheet("QLabel {color: #008000;}");
+	 welcomeLabel->setStyleSheet(QString("QLabel {color: %1;}").arg(configSettings.backColor.name()));
 	QRect rect = welcomeLabel->geometry();
 	rect.setX(offIndex);
 

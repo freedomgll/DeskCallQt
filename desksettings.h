@@ -17,7 +17,8 @@ public:
 
 public slots:
 	void loadConfig();
-	void saveConfig();
+
+	void clickPostion();
 	void clickButtonBGP();
 	void clickButtonFont();
 	void clickButtonColor();
@@ -32,6 +33,7 @@ private:
 	DeskCallQT *parent;
 	
 	void SetIntValidate(QLineEdit *edit);
+	void resetDeskDialog();
 };
 
 #endif // DESKSETTINGS_H

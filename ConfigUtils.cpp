@@ -77,20 +77,33 @@ QFont ConfigUtils::GetNoticeFont(QSettings * settings)
 	return font(settings,"Settings/FontName2", "Settings/FontSize2", "Settings/FontBold2", "Settings/FontItalic2", "Settings/FontUnderline2");
 }
 
-QColor ConfigUtils::GetButtonColor(QSettings * settings)
-{
-	return QColor(settings->value("Settings/FontColor").toString());
-}
-
 void ConfigUtils::LoadConfigSettings(QSettings * settings, ConfigSettings & configSettings)
 {
 	ConfigUtils::GetCoderPostion(settings, configSettings.postion);
+
 	configSettings.buttonFont = ConfigUtils::GetButtonFont(settings);
 	configSettings.noticeFont = ConfigUtils::GetNoticeFont(settings);
 
 	configSettings.buttonPic = settings->value("Settings/ButtonFace").toString();
-	configSettings.buttonColor = ConfigUtils::GetButtonColor(settings);
+	configSettings.buttonColor = QColor(settings->value("Settings/FontColor").toString());
 
 	configSettings.sub = settings->value("Settings/Sub").toString();
 	configSettings.backPic = settings->value("Settings/BackPic").toString();
+	configSettings.backColor = QColor(settings->value("Settings/FontColor2").toString());
+}
+
+void ConfigUtils::SaveConfigSettings(QSettings * settings, ConfigSettings & configSettings)
+{
+	SetCoderPostion(settings, configSettings.postion);
+
+	setFont(settings,configSettings.buttonFont,"Settings/FontName", "Settings/FontSize", "Settings/FontBold", "Settings/FontItalic","Settings/FontUnderline");	
+	setFont(settings,configSettings.noticeFont,"Settings/FontName2", "Settings/FontSize2", "Settings/FontBold2", "Settings/FontItalic2","Settings/FontUnderline2");
+
+	settings->setValue("Settings/ButtonFace", configSettings.buttonPic);
+	settings->setValue("Settings/FontColor", configSettings.buttonColor.name());
+
+	settings->setValue("Settings/Sub", configSettings.sub);
+	settings->setValue("Settings/BackPic", configSettings.backPic);
+	settings->setValue("Settings/FontColor2", configSettings.backColor.name());
+
 }

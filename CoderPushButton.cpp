@@ -30,7 +30,7 @@ CoderPushButton::~CoderPushButton(void)
 
 void CoderPushButton::setButtonStyle()
 {
-	QString str=QStringLiteral("QPushButton {border-image: url(Resources/%1_up.jpg); color:  %2;} QPushButton:pressed {border-image: url(Resources/%1_down.jpg);} ").arg(parent->configSettings.buttonPic,"#008000");
+	QString str=QStringLiteral("QPushButton {border-image: url(Resources/%1_up.jpg); color:  %2;} QPushButton:pressed {border-image: url(Resources/%1_down.jpg);} ").arg(parent->configSettings.buttonPic, parent->configSettings.buttonColor.name());
 	this->setStyleSheet(str);
 	this->setFont(parent->configSettings.buttonFont);
 }

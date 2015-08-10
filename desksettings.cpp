@@ -28,7 +28,7 @@ DeskSettings::DeskSettings(DeskCallQT *parent)
 
 	loadConfig();
 	
-	connect(ui.pushButtonPostion, SIGNAL(clicked()), this, SLOT(saveConfig()));
+	connect(ui.pushButtonPostion, SIGNAL(clicked()), this, SLOT(clickPostion()));
 
 	connect(ui.pushButtonBGP, SIGNAL(clicked()), this, SLOT(clickButtonBGP()));
 	connect(ui.pushButtonFont, SIGNAL(clicked()), this, SLOT(clickButtonFont()));
@@ -36,6 +36,7 @@ DeskSettings::DeskSettings(DeskCallQT *parent)
 
 	connect(ui.pushBackPic, SIGNAL(clicked()), this, SLOT(clickBackPic()));
 	connect(ui.pushBackFont, SIGNAL(clicked()), this, SLOT(clickBackFont()));
+	connect(ui.pushBackColor, SIGNAL(clicked()), this, SLOT(clickBackColor()));
 }
 
 DeskSettings::~DeskSettings()
@@ -50,9 +51,8 @@ void DeskSettings::SetIntValidate(QLineEdit *edit)
 
 void DeskSettings::loadConfig()
 {
-	qDebug() << "loadConfig";
-	CoderPostion postion;
-	ConfigUtils::GetCoderPostion(parent->settings, postion);
+	ConfigUtils::LoadConfigSettings(parent->settings, parent->configSettings);
+	CoderPostion postion = parent->configSettings.postion;
 
 	ui.lineEditTop->setText( QString::number(postion.top, 10));
 	ui.lineEditBottom->setText( QString::number(postion.bottom, 10));
@@ -62,10 +62,8 @@ void DeskSettings::loadConfig()
 	ui.lineEditSpace->setText( QString::number(postion.space, 10));
 }
 
-void DeskSettings::saveConfig()
+void DeskSettings::clickPostion()
 {
-	qDebug() << "saveConfig";
-
 	CoderPostion postion;
 	postion.top = ui.lineEditTop->text().toInt();
 	postion.bottom = ui.lineEditBottom->text().toInt();
@@ -74,7 +72,9 @@ void DeskSettings::saveConfig()
 	postion.maxRows = ui.lineEditMaxRow->text().toInt();
 	postion.space =  ui.lineEditSpace->text().toInt();
 
-	ConfigUtils::SetCoderPostion(parent->settings, postion);
+	parent->configSettings.postion = postion;
+
+	resetDeskDialog();
 }
 
 void DeskSettings::clickButtonBGP()
@@ -88,9 +88,8 @@ void DeskSettings::clickButtonBGP()
 		fileName.replace("_up.jpg", "");
 		qDebug() << fileName;
 		parent->configSettings.buttonPic=fileName;
-		parent->settings->setValue("Settings/ButtonFace", parent->configSettings.buttonPic);
-
-		parent->drawDialog();
+		
+		resetDeskDialog();
 	}
 }
 
@@ -103,7 +102,8 @@ void DeskSettings::clickButtonFont()
 	if (ok) {
 		// font is set to the font the user selected
 		parent->configSettings.buttonFont = font;
-		ConfigUtils::setFont(parent->settings,parent->configSettings.buttonFont,"Settings/FontName", "Settings/FontSize", "Settings/FontBold", "Settings/FontItalic","Settings/FontUnderline");
+
+		resetDeskDialog();
 	} 
 }
 
@@ -114,7 +114,8 @@ void DeskSettings::clickButtonColor()
 	if(color.isValid())
 	{
 		parent->configSettings.buttonColor = color;
-		parent->settings->setValue("Settings/FontColor", color.name());
+
+		resetDeskDialog();
 	}
 }
 
@@ -129,9 +130,8 @@ void DeskSettings::clickBackPic()
 		fileName = QFileInfo(fileName).fileName();
 		qDebug() << fileName;
 		parent->configSettings.backPic=fileName;
-		parent->settings->setValue("Settings/BackPic", parent->configSettings.backPic);
-
-		parent->drawDialog();
+		
+		resetDeskDialog();
 	}
 }
 
@@ -144,7 +144,8 @@ void DeskSettings::clickBackFont()
 	if (ok) {
 		// font is set to the font the user selected
 		parent->configSettings.noticeFont = font;
-		ConfigUtils::setFont(parent->settings,parent->configSettings.noticeFont,"Settings/FontName2", "Settings/FontSize2", "Settings/FontBold2", "Settings/FontItalic2","Settings/FontUnderline2");
+		
+		resetDeskDialog();
 	} 
 }
 
@@ -154,7 +155,14 @@ void DeskSettings::clickBackColor()
 
 	if(color.isValid())
 	{
-		parent->configSettings.buttonColor = color;
-		parent->settings->setValue("Settings/FontColor", color.name());
+		parent->configSettings.backColor = color;
+		
+		resetDeskDialog();
 	}
+}
+
+void DeskSettings::resetDeskDialog()
+{
+	ConfigUtils::SaveConfigSettings(parent->settings, parent->configSettings);
+	parent->drawDialog();
 }

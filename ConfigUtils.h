@@ -28,6 +28,7 @@ public:
 	QColor buttonColor;
 	QString sub;
 	QString backPic;
+	QColor backColor;
 };
 
 class ConfigUtils
@@ -68,8 +69,7 @@ public:
 	static QFont GetButtonFont(QSettings * settings);
 	static QFont GetNoticeFont(QSettings * settings);
 
-	static QColor GetButtonColor(QSettings * settings);
-
 	static void LoadConfigSettings(QSettings * settings, ConfigSettings & configSettings);
+	static void SaveConfigSettings(QSettings * settings, ConfigSettings & configSettings);
 };
 
