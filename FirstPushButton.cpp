@@ -41,7 +41,7 @@ void FirstPushButton::print()
 
 	businessList.append(business);
 
-	QList<QRect> lRects =ConfigUtils::CaculateButtonRects(businessList.size(),this->parent->width(),this->parent->height(),this->parent->postion);
+	QList<QRect> lRects =ConfigUtils::CaculateButtonRects(businessList.size(),this->parent->width(),this->parent->height(),this->parent->configSettings.postion);
 	qDebug() << lRects;
 
 	QList<CoderPushButton *> buttonList;

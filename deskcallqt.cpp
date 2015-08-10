@@ -55,45 +55,7 @@ DeskCallQT::DeskCallQT(QWidget *parent)
 
 	//showFullScreen();
 
-
 	offIndex = this->width();
-
-	//for (int i = 0; i < lRects.size(); ++i) {
- //   
-	//	QString s = QStringLiteral("你好");
-	//	QPushButton *pushButton= new QPushButton(s,this);  
- // 
-	//	pushButton->setGeometry(lRects[i]); //按钮的位置及大小  
-
-	//	 s = QStringLiteral("QPushButton{ background-image: url(Resources/紫水晶_down.jpg); }");
-
-	//	 /*QString str=QStringLiteral("QPushButton#btn_name{background-image: url(Resources/紫水晶_up.jpg)}" 
- //                   "QPushButton#btn_name:hover{background-image: url(:/images/call_hov.bmp);}" 
- //                   "QPushButton#btn_name:pressed{background-image: url(Resources/紫水晶_down.jpg);}");*/
-	//	 QString str=QStringLiteral("QPushButton {background-image: url(Resources/紫水晶_up.jpg); border: none; font-family:宋体; font-weight: bold; font-size: 18pt; color: red;} QPushButton:pressed {background-image: url(Resources/紫水晶_down.jpg); border: none;} ");
-	//	pushButton->setStyleSheet(str);
-
-	//	//connect(pushButton, SIGNAL(clicked()),this,SLOT(print(i)));
-
-	//	
-	//	signalMapper->setMapping(pushButton,i);
-	//	connect(pushButton, SIGNAL(clicked()), signalMapper, SLOT(map()));
-
-	//	pushButton->show();
-	//}
-
-	//connect(signalMapper, SIGNAL(mapped(QWidget *)), this, SLOT(deskClick(QWidget *)));
-
-
-	//bool ok;
-	//QFont font = QFontDialog::getFont(&ok, QFont("Times", 12), this);
-	//if (ok) {
-	//	// font is set to the font the user selected
-	//} else {
-	//	// the user canceled the dialog; font is set to the initial
-	//	// value, in this case Times, 12.
-	//}
-
 	
 	QShortcut * shortcut = new QShortcut(QKeySequence("Ctrl+O"), this);
 	connect(shortcut, SIGNAL(activated()), this, SLOT(config()));
@@ -102,16 +64,6 @@ DeskCallQT::DeskCallQT(QWidget *parent)
     connect(timer, SIGNAL(timeout()), this, SLOT(drawWelcome()));
     timer->start(100);
 
-	/*DeskSettings w(this);
-	w.exec();*/
-
-	/*QStringList filters;
-	filters << QStringLiteral("图片文件 (*_up.jpg)");
-
-	QFileDialog dialog(this);
-	dialog.setDirectory(".\\Resources");
-	dialog.setNameFilters(filters);
-	dialog.exec();*/
 	initDialog();
 }
 
@@ -132,32 +84,15 @@ void DeskCallQT::initDialog()
 	this->confSql = ConfigSql();
 	classList =	confSql.queryLClass();
 
-	ConfigUtils::GetCoderPostion(settings, postion);
-
 	welcomeLabel = new QLabel(this);
-	//label->setFrameStyle(QFrame::Panel | QFrame::Sunken);
-	
-	QList<QRect> lRects =ConfigUtils::CaculateButtonRects(classList.size(),this->width(),this->height(),postion);
-	qDebug() << lRects;
 
-	 QSignalMapper *signalMapper = new QSignalMapper(this);
-
-	 for(int i = 0; i < classList.size(); ++i)
-	 {
-		 CoderPushButton *pushButton= new FirstPushButton(classList[i].classname, classList[i].classid, lRects[i], this);
-
-
-		/*connect(pushButton, SIGNAL(clicked()), signalMapper, SLOT(map()));
-		signalMapper->setMapping(pushButton,pushButton);
-		
-
-		pushButton->show();*/
-
+	for(int i = 0; i < classList.size(); ++i)
+	{
+		CoderPushButton *pushButton= new FirstPushButton(classList[i].classname, classList[i].classid,QRect() , this);
 		this->buttonList.append(pushButton);
-	 }
+	}
 
-	 drawDialog();
-
+	drawDialog();
 }
 
 void DeskCallQT::drawDialog()
@@ -189,11 +124,6 @@ void DeskCallQT::drawDialog()
 	rect.setHeight(offHeight);
 
 	welcomeLabel->setGeometry(rect);
-}
-
-void DeskCallQT::open()
-{
-	this->setStyleSheet("#mainWindow { border-image: url(Resources/default.jpg);}");
 }
 
 void DeskCallQT::config()

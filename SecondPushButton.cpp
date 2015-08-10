@@ -25,7 +25,7 @@ void SecondPushButton::clickAction()
 		ConfigSql confSql = ConfigSql();
 		QList<classT> classList =	confSql.queryLClass();
 
-		QList<QRect> lRects =ConfigUtils::CaculateButtonRects(classList.size(),this->parent->width(),this->parent->height(),this->parent->postion);
+		QList<QRect> lRects =ConfigUtils::CaculateButtonRects(classList.size(),this->parent->width(),this->parent->height(),this->parent->configSettings.postion);
 		qDebug() << lRects;
 
 		QList<CoderPushButton *> buttonList;

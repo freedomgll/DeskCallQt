@@ -21,18 +21,11 @@ public:
 
 protected:
     void  resizeEvent(QResizeEvent* event);
-	void  open();
 
 public:
-	void drawButtons();
-	void drawPage();
 	void RecreateButtonList(QList<CoderPushButton *> buttonList);
-	
-	QFont buttonFont;
-	QFont noticeFont;
 
 	QList<CoderPushButton *> buttonList;
-	CoderPostion postion;
 	QSettings * settings;
 
 	ConfigSettings configSettings;
