@@ -18,6 +18,9 @@ public:
 public slots:
 	void loadConfig();
 	void saveConfig();
+	void clickButtonBGP();
+	void clickButtonFont();
+	void clickButtonColor();
 
 private:
 	Ui::DeskSettings ui;

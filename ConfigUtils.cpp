@@ -76,3 +76,18 @@ QFont ConfigUtils::GetNoticeFont(QSettings * settings)
 {
 	return font(settings,"Settings/FontName2", "Settings/FontSize2", "Settings/FontBold2", "Settings/FontItalic2");
 }
+
+QColor ConfigUtils::GetButtonColor(QSettings * settings)
+{
+	return QColor(settings->value("Settings/FontColor").toString());
+}
+
+void ConfigUtils::LoadConfigSettings(QSettings * settings, ConfigSettings & configSettings)
+{
+	ConfigUtils::GetCoderPostion(settings, configSettings.postion);
+	configSettings.buttonFont = ConfigUtils::GetButtonFont(settings);
+	configSettings.noticeFont = ConfigUtils::GetNoticeFont(settings);
+
+	configSettings.buttonPic = settings->value("Settings/ButtonFace").toString();
+	configSettings.buttonColor = ConfigUtils::GetButtonColor(settings);
+}

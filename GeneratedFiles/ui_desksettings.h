@@ -51,11 +51,11 @@ public:
     QLineEdit *lineEditSpace;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer;
-    QPushButton *pushButton_2;
+    QPushButton *pushButtonBGP;
     QSpacerItem *horizontalSpacer_2;
-    QPushButton *pushButton_3;
+    QPushButton *pushButtonFont;
     QSpacerItem *horizontalSpacer_3;
-    QPushButton *pushButton_4;
+    QPushButton *pushButtonColor;
     QSpacerItem *horizontalSpacer_4;
     QSpacerItem *horizontalSpacer_5;
     QGroupBox *groupBox_2;
@@ -221,28 +221,28 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer);
 
-        pushButton_2 = new QPushButton(groupBox);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pushButtonBGP = new QPushButton(groupBox);
+        pushButtonBGP->setObjectName(QStringLiteral("pushButtonBGP"));
 
-        horizontalLayout->addWidget(pushButton_2);
+        horizontalLayout->addWidget(pushButtonBGP);
 
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_2);
 
-        pushButton_3 = new QPushButton(groupBox);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        pushButtonFont = new QPushButton(groupBox);
+        pushButtonFont->setObjectName(QStringLiteral("pushButtonFont"));
 
-        horizontalLayout->addWidget(pushButton_3);
+        horizontalLayout->addWidget(pushButtonFont);
 
         horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_3);
 
-        pushButton_4 = new QPushButton(groupBox);
-        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+        pushButtonColor = new QPushButton(groupBox);
+        pushButtonColor->setObjectName(QStringLiteral("pushButtonColor"));
 
-        horizontalLayout->addWidget(pushButton_4);
+        horizontalLayout->addWidget(pushButtonColor);
 
         horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -559,9 +559,9 @@ public:
         label_4->setText(QApplication::translate("DeskSettings", "\345\267\246", 0));
         label_3->setText(QApplication::translate("DeskSettings", "\345\217\263", 0));
         label_6->setText(QApplication::translate("DeskSettings", "\351\227\264\350\267\235", 0));
-        pushButton_2->setText(QApplication::translate("DeskSettings", "\350\256\276\347\275\256\346\214\211\351\222\256\350\203\214\346\231\257>>", 0));
-        pushButton_3->setText(QApplication::translate("DeskSettings", "\350\256\276\347\275\256\346\214\211\351\222\256\345\255\227\344\275\223>>", 0));
-        pushButton_4->setText(QApplication::translate("DeskSettings", "\350\256\276\347\275\256\346\214\211\351\222\256\351\242\234\350\211\262>>", 0));
+        pushButtonBGP->setText(QApplication::translate("DeskSettings", "\350\256\276\347\275\256\346\214\211\351\222\256\350\203\214\346\231\257>>", 0));
+        pushButtonFont->setText(QApplication::translate("DeskSettings", "\350\256\276\347\275\256\346\214\211\351\222\256\345\255\227\344\275\223>>", 0));
+        pushButtonColor->setText(QApplication::translate("DeskSettings", "\350\256\276\347\275\256\346\214\211\351\222\256\351\242\234\350\211\262>>", 0));
         groupBox_2->setTitle(QApplication::translate("DeskSettings", "\347\245\250\345\217\267\350\256\276\347\275\256", 0));
         label_7->setText(QApplication::translate("DeskSettings", "\346\240\207\351\242\230", 0));
         pushButton_5->setText(QApplication::translate("DeskSettings", "\346\233\264\346\224\271", 0));

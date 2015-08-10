@@ -10,9 +10,11 @@ public:
 	CoderPushButton(const QString & text, const QRect & rect, DeskCallQT * parent);
 	~CoderPushButton(void);
 
+	void setButtonStyle();
+
 protected:
 	DeskCallQT * parent;
 
-	void RecreateButtonList(QList<QPushButton *> buttonList);
+	//void RecreateButtonList(QList<CoderPushButton *> buttonList);
 };
 

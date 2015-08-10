@@ -5,6 +5,7 @@
 #include <QString>
 #include <QSettings>
 #include <QFont>
+#include <QColor>
 
 class CoderPostion
 {
@@ -15,6 +16,16 @@ public:
 	int bottom;
 	int maxRows;
 	int space;
+};
+
+class ConfigSettings
+{
+public:
+	QFont buttonFont;
+	QFont noticeFont;
+	CoderPostion postion;
+	QString buttonPic;
+	QColor buttonColor;
 };
 
 class ConfigUtils
@@ -40,12 +51,13 @@ public:
 		return font;
 	}
 
-	static void  setFont(QSettings * settings, QFont font, const QString & qfamily, const QString & qpointSize, const QString & qweight, const QString & qitalic)
+	static void  setFont(QSettings * settings, QFont font, const QString & qfamily, const QString & qpointSize, const QString & qweight, const QString & qitalic, const QString & qunderline = "")
 	{
 		settings->setValue(qfamily, font.family());
 		settings->setValue(qpointSize, font.pointSize());
 		settings->setValue(qweight, font.weight());
 		settings->setValue(qitalic, font.italic());	
+		settings->setValue(qunderline, font.underline());	
 	}
 
 	static QList<QRect> CaculateButtonRects(int size, int width, int height, CoderPostion postion);
@@ -53,5 +65,9 @@ public:
 	static void SetCoderPostion(QSettings * settings, CoderPostion& postion);
 	static QFont GetButtonFont(QSettings * settings);
 	static QFont GetNoticeFont(QSettings * settings);
+
+	static QColor GetButtonColor(QSettings * settings);
+
+	static void LoadConfigSettings(QSettings * settings, ConfigSettings & configSettings);
 };
 

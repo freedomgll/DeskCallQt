@@ -1,6 +1,9 @@
 #include "desksettings.h"
 
 #include <QtDebug>
+#include <QFileDialog>
+#include <QFontDialog>
+#include <QColorDialog>
 
 DeskSettings::DeskSettings(QWidget *parent)
 	: QDialog(parent)
@@ -26,6 +29,10 @@ DeskSettings::DeskSettings(DeskCallQT *parent)
 	loadConfig();
 	
 	connect(ui.pushButtonPostion, SIGNAL(clicked()), this, SLOT(saveConfig()));
+
+	connect(ui.pushButtonBGP, SIGNAL(clicked()), this, SLOT(clickButtonBGP()));
+	connect(ui.pushButtonFont, SIGNAL(clicked()), this, SLOT(clickButtonFont()));
+	connect(ui.pushButtonColor, SIGNAL(clicked()), this, SLOT(clickButtonColor()));
 }
 
 DeskSettings::~DeskSettings()
@@ -65,4 +72,45 @@ void DeskSettings::saveConfig()
 	postion.space =  ui.lineEditSpace->text().toInt();
 
 	ConfigUtils::SetCoderPostion(parent->settings, postion);
+}
+
+void DeskSettings::clickButtonBGP()
+{
+	QString fileName = QFileDialog::getOpenFileName(this, QStringLiteral("打开文件"),
+                                                "./Resources",
+                                                QStringLiteral("图片文件 (*_up.jpg)"));
+	if(!fileName.isEmpty())
+	{
+		fileName = QFileInfo(fileName).fileName();
+		fileName.replace("_up.jpg", "");
+		qDebug() << fileName;
+		parent->configSettings.buttonPic=fileName;
+		parent->settings->setValue("Settings/ButtonFace", parent->configSettings.buttonPic);
+
+		parent->drawDialog();
+	}
+}
+
+void DeskSettings::clickButtonFont()
+{
+	bool ok;
+
+	QFont font = QFontDialog::getFont(&ok, parent->configSettings.buttonFont, this);
+
+	if (ok) {
+		// font is set to the font the user selected
+		parent->configSettings.buttonFont = font;
+		ConfigUtils::setFont(parent->settings,parent->configSettings.buttonFont,"Settings/FontName", "Settings/FontSize", "Settings/FontBold", "Settings/FontItalic","Settings/FontUnderline");
+	} 
+}
+
+void DeskSettings::clickButtonColor()
+{
+	QColor color = QColorDialog::getColor(parent->configSettings.buttonColor, this);
+
+	if(color.isValid())
+	{
+		parent->configSettings.buttonColor = color;
+		parent->settings->setValue("Settings/FontColor", color.name());
+	}
 }

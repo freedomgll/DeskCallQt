@@ -10,20 +10,6 @@
 #include "ConfigSql.h"
 #include "ConfigUtils.h"
 
-//class MyPushButton : public QPushButton
-//{
-//
-//public:
-//	QString id;
-//	int layer;
-//
-//    MyPushButton(const QString & text,  QString id, int layer,QWidget * parent = 0):QPushButton(text, parent)
-//	{
-//		this->id = id;
-//		this->layer = layer;
-//	}
-//};
-
 class DeskCallQT : public QDialog
 {
 	Q_OBJECT
@@ -48,28 +34,10 @@ public:
 	CoderPostion postion;
 	QSettings * settings;
 
-
-	QFont font(const QString & qfamily, const QString & qpointSize, const QString & qweight, const QString & qitalic)
-	{
-		QString family = settings->value(qfamily).toString();
-		int pointSize = settings->value(qpointSize).toInt();
-		int weight = settings->value(qweight).toBool() ? 75 : 50;
-		bool italic = settings->value(qitalic).toBool();
-
-		QFont font(family, pointSize, weight, italic);
-		return font;
-	}
-
-	void  setFont(QFont font, const QString & qfamily, const QString & qpointSize, const QString & qweight, const QString & qitalic)
-	{
-		settings->setValue(qfamily, font.family());
-		settings->setValue(qpointSize, font.pointSize());
-		settings->setValue(qweight, font.weight());
-		settings->setValue(qitalic, font.italic());	
-	}
+	ConfigSettings configSettings;
 
 	void initDialog();
-
+	void drawDialog();
 		
 public slots:
 	void  config();

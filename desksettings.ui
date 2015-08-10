@@ -148,7 +148,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_2">
+          <widget class="QPushButton" name="pushButtonBGP">
            <property name="text">
             <string>设置按钮背景&gt;&gt;</string>
            </property>
@@ -168,7 +168,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_3">
+          <widget class="QPushButton" name="pushButtonFont">
            <property name="text">
             <string>设置按钮字体&gt;&gt;</string>
            </property>
@@ -188,7 +188,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_4">
+          <widget class="QPushButton" name="pushButtonColor">
            <property name="text">
             <string>设置按钮颜色&gt;&gt;</string>
            </property>

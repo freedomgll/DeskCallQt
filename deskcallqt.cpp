@@ -134,9 +134,13 @@ void DeskCallQT::initDialog()
 	this->confSql = ConfigSql();
 	classList =	confSql.queryLClass();
 
-		ConfigUtils::GetCoderPostion(settings, postion);
-	this->buttonFont = ConfigUtils::GetButtonFont(settings);
-	this->noticeFont = ConfigUtils::GetNoticeFont(settings);
+	ConfigUtils::GetCoderPostion(settings, postion);
+	ConfigUtils::GetCoderPostion(settings, this->configSettings.postion);
+	this->configSettings.buttonFont = ConfigUtils::GetButtonFont(settings);
+	this->configSettings.noticeFont = ConfigUtils::GetNoticeFont(settings);
+
+	this->configSettings.buttonPic = this->settings->value("Settings/ButtonFace").toString();
+	this->configSettings.buttonColor = ConfigUtils::GetButtonColor(settings);
 
 	welcomeLabel = new QLabel(this);
 	//label->setFrameStyle(QFrame::Panel | QFrame::Sunken);
@@ -148,7 +152,7 @@ void DeskCallQT::initDialog()
 	QRect rect = welcomeLabel->geometry();
 	rect.setX(offIndex);
 
-	welcomeLabel->setFont(this->noticeFont);
+	welcomeLabel->setFont(this->configSettings.noticeFont);
 	offWidth = welcomeLabel->fontMetrics().width(welcomeLabel->text());
 	int offHeight = welcomeLabel->fontMetrics().height();
 
@@ -164,7 +168,7 @@ void DeskCallQT::initDialog()
 
 	 for(int i = 0; i < classList.size(); ++i)
 	 {
-		 QPushButton *pushButton= new FirstPushButton(classList[i].classname, classList[i].classid, lRects[i], this);
+		 CoderPushButton *pushButton= new FirstPushButton(classList[i].classname, classList[i].classid, lRects[i], this);
 
 
 		/*connect(pushButton, SIGNAL(clicked()), signalMapper, SLOT(map()));
@@ -177,6 +181,22 @@ void DeskCallQT::initDialog()
 	 }
 
 
+}
+
+void DeskCallQT::drawDialog()
+{
+	ConfigUtils::LoadConfigSettings(settings, configSettings);
+
+
+	QList<QRect> lRects =ConfigUtils::CaculateButtonRects(classList.size(),this->width(),this->height(),configSettings.postion);
+
+	 for(int i = 0; i < this->buttonList.size(); ++i)
+	 {
+		 QPushButton* pushButton = this->buttonList[i];
+		 pushButton->setGeometry(lRects[i]);
+
+		 //pushButton->setButtonStyle();
+	 }
 }
 
 void DeskCallQT::open()
