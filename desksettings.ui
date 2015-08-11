@@ -542,7 +542,7 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QPushButton" name="pushButton_14">
+          <widget class="QPushButton" name="pushButtonRegion">
            <property name="text">
             <string>区域设置&gt;&gt;</string>
            </property>

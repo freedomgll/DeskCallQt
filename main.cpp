@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 	QApplication a(argc, argv);
 
 	QTranslator translator;
-	translator.load("qt_zh_CN.qm","Resources/");
+	translator.load("qtbase_zh_CN.qm","Resources/");
 	a.installTranslator(&translator);
 
 	DeskCallQT w;

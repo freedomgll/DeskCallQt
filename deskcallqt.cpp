@@ -90,7 +90,12 @@ void DeskCallQT::initDialog()
 	
 	if(classList.size() < 1)
 	{
-		DeskChoice(this).exec();
+		DeskChoice choice(this);
+		if(choice.exec() == QDialog::Accepted)
+		{
+			classList = choice.confirmChoice();
+			ConfigUtils::SaveConfigSettings(settings, configSettings);
+		}
 	}
 
 	welcomeLabel = new QLabel(this);

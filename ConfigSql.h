@@ -17,6 +17,11 @@ public:
   QString regionname;
 };
 
+class areaRegionT {
+public:
+  QString areaname;
+  QString regionname;
+};
 
 class classT {
 public:
@@ -69,6 +74,18 @@ public:
 			dataList.append(data);
 		}
 		return dataList;
+	}
+
+	areaRegionT queryAreaRegion(QString regionid)
+	{
+		areaRegionT data;
+
+		QSqlQuery query("SELECT area.areaname,region.regionname FROM t_queue_region region INNER JOIN t_queue_area area ON area.id = region.areaid WHERE regionid = '"+regionid+"'");
+		if (query.next()) {
+			data.areaname = query.value("areaname").toString();
+			data.regionname = query.value("regionname").toString();
+		}
+		return data;
 	}
 
 	QList<classT> queryLClass(QString regionid)

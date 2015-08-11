@@ -5,6 +5,9 @@
 #include <QFontDialog>
 #include <QColorDialog>
 
+#include "deskchoice.h"
+#include "FirstPushButton.h"
+
 DeskSettings::DeskSettings(QWidget *parent)
 	: QDialog(parent)
 {
@@ -35,6 +38,7 @@ DeskSettings::DeskSettings(DeskCallQT *parent)
 	connect(ui.pushButtonColor, SIGNAL(clicked()), this, SLOT(clickButtonColor()));
 
 	connect(ui.pushButtonSub, SIGNAL(clicked()), this, SLOT(clickButtonSub()));
+	connect(ui.pushButtonRegion, SIGNAL(clicked()), this, SLOT(clickButtonRegion()));
 
 	connect(ui.pushBackPic, SIGNAL(clicked()), this, SLOT(clickBackPic()));
 	connect(ui.pushBackFont, SIGNAL(clicked()), this, SLOT(clickBackFont()));
@@ -99,14 +103,11 @@ void DeskSettings::clickButtonBGP()
 
 void DeskSettings::clickButtonFont()
 {
-	bool ok;
+	QFontDialog font(parent->configSettings.buttonFont, this);
+	font.setWindowFlags(font.windowFlags() | Qt::WindowCloseButtonHint);
 
-	QFont font = QFontDialog::getFont(&ok, parent->configSettings.buttonFont, this);
-
-	if (ok) {
-		// font is set to the font the user selected
-		parent->configSettings.buttonFont = font;
-
+	if (font.exec()== QDialog::Accepted) {
+		parent->configSettings.buttonFont = font.currentFont();
 		resetDeskDialog();
 	} 
 }
@@ -129,6 +130,27 @@ void DeskSettings::clickButtonSub()
 	resetDeskDialog();
 }
 
+void DeskSettings::clickButtonRegion()
+{
+	DeskChoice choice(this->parent);
+	if(choice.exec() == QDialog::Accepted)
+	{
+		QList<classT> classList = choice.confirmChoice();
+
+		QList<CoderPushButton *> buttonList;
+
+		for(int i = 0; i < classList.size(); ++i)
+		 {
+			 CoderPushButton *pushButton= new FirstPushButton(classList[i].classname, classList[i].classid, QRect(), this->parent);
+			 buttonList.append(pushButton);
+		 }
+
+		this->parent->RecreateButtonList(buttonList);
+
+		resetDeskDialog();
+	}
+}
+
 void DeskSettings::clickBackPic()
 {
 	QString fileName = QFileDialog::getOpenFileName(this, QStringLiteral("打开文件"),
@@ -146,14 +168,11 @@ void DeskSettings::clickBackPic()
 
 void DeskSettings::clickBackFont()
 {
-	bool ok;
+	QFontDialog font(parent->configSettings.backFont, this);
+	font.setWindowFlags(font.windowFlags() | Qt::WindowCloseButtonHint);
 
-	QFont font = QFontDialog::getFont(&ok, parent->configSettings.noticeFont, this);
-
-	if (ok) {
-		// font is set to the font the user selected
-		parent->configSettings.noticeFont = font;
-		
+	if (font.exec()== QDialog::Accepted) {
+		parent->configSettings.backFont = font.currentFont();
 		resetDeskDialog();
 	} 
 }
