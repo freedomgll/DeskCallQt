@@ -72,6 +72,11 @@ QFont ConfigUtils::GetButtonFont(QSettings * settings)
 	return font(settings,"Settings/FontName", "Settings/FontSize", "Settings/FontBold", "Settings/FontItalic", "Settings/FontUnderline");
 }
 
+QFont ConfigUtils::GetBackFont(QSettings * settings)
+{
+	return font(settings,"Settings/FontName2", "Settings/FontSize2", "Settings/FontBold2", "Settings/FontItalic2", "Settings/FontUnderline2");
+}
+
 QFont ConfigUtils::GetNoticeFont(QSettings * settings)
 {
 	return font(settings,"Settings/FontName2", "Settings/FontSize2", "Settings/FontBold2", "Settings/FontItalic2", "Settings/FontUnderline2");
@@ -79,10 +84,15 @@ QFont ConfigUtils::GetNoticeFont(QSettings * settings)
 
 void ConfigUtils::LoadConfigSettings(QSettings * settings, ConfigSettings & configSettings)
 {
+	configSettings.host = settings->value("Database/ServerAddress").toString();
+	configSettings.database = settings->value("Database/DBase").toString();
+	configSettings.user = settings->value("Database/DBuser").toString();
+	configSettings.password = settings->value("Database/DBpass").toString();
+
 	ConfigUtils::GetCoderPostion(settings, configSettings.postion);
 
 	configSettings.buttonFont = ConfigUtils::GetButtonFont(settings);
-	configSettings.noticeFont = ConfigUtils::GetNoticeFont(settings);
+	configSettings.backFont = ConfigUtils::GetBackFont(settings);
 
 	configSettings.buttonPic = settings->value("Settings/ButtonFace").toString();
 	configSettings.buttonColor = QColor(settings->value("Settings/FontColor").toString());
@@ -97,7 +107,7 @@ void ConfigUtils::SaveConfigSettings(QSettings * settings, ConfigSettings & conf
 	SetCoderPostion(settings, configSettings.postion);
 
 	setFont(settings,configSettings.buttonFont,"Settings/FontName", "Settings/FontSize", "Settings/FontBold", "Settings/FontItalic","Settings/FontUnderline");	
-	setFont(settings,configSettings.noticeFont,"Settings/FontName2", "Settings/FontSize2", "Settings/FontBold2", "Settings/FontItalic2","Settings/FontUnderline2");
+	setFont(settings,configSettings.backFont,"Settings/FontName2", "Settings/FontSize2", "Settings/FontBold2", "Settings/FontItalic2","Settings/FontUnderline2");
 
 	settings->setValue("Settings/ButtonFace", configSettings.buttonPic);
 	settings->setValue("Settings/FontColor", configSettings.buttonColor.name());

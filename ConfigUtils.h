@@ -22,6 +22,7 @@ class ConfigSettings
 {
 public:
 	QFont buttonFont;
+	QFont backFont;
 	QFont noticeFont;
 	CoderPostion postion;
 	QString buttonPic;
@@ -29,6 +30,11 @@ public:
 	QString sub;
 	QString backPic;
 	QColor backColor;
+
+	QString host;
+	QString database;
+	QString user;
+	QString password;
 };
 
 class ConfigUtils
@@ -68,6 +74,7 @@ public:
 	static void SetCoderPostion(QSettings * settings, CoderPostion& postion);
 	static QFont GetButtonFont(QSettings * settings);
 	static QFont GetNoticeFont(QSettings * settings);
+	static QFont GetBackFont(QSettings * settings);
 
 	static void LoadConfigSettings(QSettings * settings, ConfigSettings & configSettings);
 	static void SaveConfigSettings(QSettings * settings, ConfigSettings & configSettings);

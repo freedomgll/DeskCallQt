@@ -23,6 +23,8 @@ public slots:
 	void clickButtonFont();
 	void clickButtonColor();
 
+	void clickButtonSub();
+
 	void clickBackPic();
 	void clickBackFont();
 	void clickBackColor();

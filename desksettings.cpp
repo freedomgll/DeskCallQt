@@ -34,6 +34,8 @@ DeskSettings::DeskSettings(DeskCallQT *parent)
 	connect(ui.pushButtonFont, SIGNAL(clicked()), this, SLOT(clickButtonFont()));
 	connect(ui.pushButtonColor, SIGNAL(clicked()), this, SLOT(clickButtonColor()));
 
+	connect(ui.pushButtonSub, SIGNAL(clicked()), this, SLOT(clickButtonSub()));
+
 	connect(ui.pushBackPic, SIGNAL(clicked()), this, SLOT(clickBackPic()));
 	connect(ui.pushBackFont, SIGNAL(clicked()), this, SLOT(clickBackFont()));
 	connect(ui.pushBackColor, SIGNAL(clicked()), this, SLOT(clickBackColor()));
@@ -60,6 +62,8 @@ void DeskSettings::loadConfig()
 	ui.lineEditRight->setText( QString::number(postion.right, 10));
 	ui.lineEditMaxRow->setText( QString::number(postion.maxRows, 10));
 	ui.lineEditSpace->setText( QString::number(postion.space, 10));
+
+	ui.lineEditSub->setText(parent->configSettings.sub);
 }
 
 void DeskSettings::clickPostion()
@@ -119,6 +123,11 @@ void DeskSettings::clickButtonColor()
 	}
 }
 
+void DeskSettings::clickButtonSub()
+{
+	parent->configSettings.sub = ui.lineEditSub->text();
+	resetDeskDialog();
+}
 
 void DeskSettings::clickBackPic()
 {

@@ -19,7 +19,7 @@
 #include <QTextCodec>
 #include <QFileDialog>
 
-static bool createConnection()
+static bool createConnection(QString host, QString database, QString user, QString password)
 {
 	QStringList drivers = QSqlDatabase::drivers();
 	foreach(QString driver, drivers)
@@ -27,13 +27,13 @@ static bool createConnection()
 
     QSqlDatabase db = QSqlDatabase::addDatabase( "QMYSQL" );
 
-	db.setHostName( "localhost" );
+	db.setHostName(host);
 	db.setPort(3306);
 
-	db.setDatabaseName( "trading" );
+	db.setDatabaseName(database);
 
-	db.setUserName( "root" );
-	db.setPassword( "root" );
+	db.setUserName(user);
+	db.setPassword(password);
     if (!db.open()) {
         qDebug() << "Database error occurred";
         return false;
@@ -77,7 +77,9 @@ void DeskCallQT::initDialog()
 	this->settings = new QSettings("Resources/Coder.ini", QSettings::IniFormat);
 	this->settings->setIniCodec(QTextCodec::codecForName("GBK"));
 
-	createConnection();
+	ConfigUtils::LoadConfigSettings(settings, configSettings);
+
+	createConnection(configSettings.host, configSettings.database, configSettings.user, configSettings.password);
 
 	this->setObjectName("mainWindow");
 	
@@ -117,7 +119,7 @@ void DeskCallQT::drawDialog()
 	QRect rect = welcomeLabel->geometry();
 	rect.setX(offIndex);
 
-	welcomeLabel->setFont(this->configSettings.noticeFont);
+	welcomeLabel->setFont(this->configSettings.backFont);
 	offWidth = welcomeLabel->fontMetrics().width(welcomeLabel->text());
 	int offHeight = welcomeLabel->fontMetrics().height();
 

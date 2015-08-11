@@ -454,7 +454,7 @@
             </spacer>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_11">
+            <widget class="QPushButton" name="pushButtonSub">
              <property name="text">
               <string>更改</string>
              </property>
