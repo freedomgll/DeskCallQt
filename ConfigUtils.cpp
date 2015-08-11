@@ -1,5 +1,6 @@
 #include "ConfigUtils.h"
 
+#include <QtDebug>
 
 ConfigUtils::ConfigUtils(void)
 {
@@ -88,6 +89,9 @@ void ConfigUtils::LoadConfigSettings(QSettings * settings, ConfigSettings & conf
 	configSettings.database = settings->value("Database/DBase").toString();
 	configSettings.user = settings->value("Database/DBuser").toString();
 	configSettings.password = settings->value("Database/DBpass").toString();
+	
+	configSettings.RegionID = settings->value("Database/Region").toString();
+	configSettings.RegionIDs = settings->value("Database/RegionIDs").toString().split("|");
 
 	ConfigUtils::GetCoderPostion(settings, configSettings.postion);
 
@@ -104,6 +108,9 @@ void ConfigUtils::LoadConfigSettings(QSettings * settings, ConfigSettings & conf
 
 void ConfigUtils::SaveConfigSettings(QSettings * settings, ConfigSettings & configSettings)
 {
+	settings->setValue("Database/Region", configSettings.RegionID);
+	settings->setValue("Database/RegionIDs", configSettings.RegionIDs.join("|"));
+
 	SetCoderPostion(settings, configSettings.postion);
 
 	setFont(settings,configSettings.buttonFont,"Settings/FontName", "Settings/FontSize", "Settings/FontBold", "Settings/FontItalic","Settings/FontUnderline");	

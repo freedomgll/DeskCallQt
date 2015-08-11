@@ -82,9 +82,18 @@ void DeskCallQT::initDialog()
 	createConnection(configSettings.host, configSettings.database, configSettings.user, configSettings.password);
 
 	this->setObjectName("mainWindow");
-	
+
 	this->confSql = ConfigSql();
-	classList =	confSql.queryLClass();
+	QList<classT> classList;
+	foreach(QString regionid, configSettings.RegionIDs)
+	{
+		classList.append(confSql.queryLClass(regionid));
+	}
+	
+	if(classList.size() < 1)
+	{
+
+	}
 
 	welcomeLabel = new QLabel(this);
 

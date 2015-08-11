@@ -23,7 +23,11 @@ void SecondPushButton::clickAction()
 	if(this->text() == QStringLiteral("·µ»Ø/Return"))
 	{
 		ConfigSql confSql = ConfigSql();
-		QList<classT> classList =	confSql.queryLClass();
+		QList<classT> classList;
+		foreach(QString regionid, this->parent->configSettings.RegionIDs)
+		{
+			classList.append(confSql.queryLClass(regionid));
+		}
 
 		QList<QRect> lRects =ConfigUtils::CaculateButtonRects(classList.size(),this->parent->width(),this->parent->height(),this->parent->configSettings.postion);
 		qDebug() << lRects;

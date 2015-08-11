@@ -9,7 +9,6 @@ class classT {
 public:
   QString classid;
   QString classname;
-  int layer;
 };
 
 
@@ -27,16 +26,15 @@ public:
 	ConfigSql(void);
 	~ConfigSql(void);
 
-	QList<classT> queryLClass()
+	QList<classT> queryLClass(QString regionid)
 	{
 		QList<classT> dataList;
 
-		QSqlQuery query("SELECT classid,classname,1 as layer FROM t_queue_class");
+		QSqlQuery query("SELECT classid,classname FROM t_queue_class WHERE regionid = '"+regionid+"' ORDER BY reorder");
 		while (query.next()) {
 			classT data;
 			data.classid = query.value("classid").toString();
 			data.classname = query.value("classname").toString();
-			data.layer = query.value("layer").toInt();
 
 			dataList.append(data);
 		}

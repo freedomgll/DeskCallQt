@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QList>
+#include <QStringList>
 #include <QRect>
 #include <QString>
 #include <QSettings>
@@ -35,6 +36,9 @@ public:
 	QString database;
 	QString user;
 	QString password;
+
+	QString RegionID;
+	QStringList RegionIDs; 
 };
 
 class ConfigUtils

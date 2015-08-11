@@ -50,7 +50,6 @@ private:
 	int offWidth;
 
 	ConfigSql confSql;
-	QList<classT> classList;
 	QList<businessT> businessList;
 };
 
