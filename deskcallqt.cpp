@@ -1,5 +1,7 @@
 #include "deskcallqt.h"
 #include "desksettings.h"
+#include "deskchoice.h"
+
 #include "ConfigSql.h"
 #include "FirstPushButton.h"
 #include "SecondPushButton.h"
@@ -60,10 +62,6 @@ DeskCallQT::DeskCallQT(QWidget *parent)
 	QShortcut * shortcut = new QShortcut(QKeySequence("Ctrl+O"), this);
 	connect(shortcut, SIGNAL(activated()), this, SLOT(config()));
 
-	QTimer *timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(drawWelcome()));
-    timer->start(100);
-
 	initDialog();
 }
 
@@ -92,7 +90,7 @@ void DeskCallQT::initDialog()
 	
 	if(classList.size() < 1)
 	{
-
+		DeskChoice(this).exec();
 	}
 
 	welcomeLabel = new QLabel(this);
@@ -104,6 +102,10 @@ void DeskCallQT::initDialog()
 	}
 
 	drawDialog();
+
+	QTimer *timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(drawWelcome()));
+    timer->start(100);
 }
 
 void DeskCallQT::drawDialog()

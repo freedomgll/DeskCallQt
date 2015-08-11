@@ -15,6 +15,9 @@ QList<QRect> ConfigUtils::CaculateButtonRects(int size, int cx, int cy, CoderPos
 {
 	QList<QRect> lRects;
 
+	if(size == 0)
+		return lRects;
+
 	int maxRows = postion.maxRows;
 	int space = postion.space;
 

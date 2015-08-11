@@ -5,12 +5,24 @@
 #include <QList>
 #include <QSqlQuery>
 
+class areaT {
+public:
+  QString id;
+  QString areaname;
+};
+
+class regionT {
+public:
+  QString regionid;
+  QString regionname;
+};
+
+
 class classT {
 public:
   QString classid;
   QString classname;
 };
-
 
 class businessT {
 public:
@@ -25,6 +37,39 @@ class ConfigSql
 public:
 	ConfigSql(void);
 	~ConfigSql(void);
+
+
+	
+	QList<areaT> queryLArea()
+	{
+		QList<areaT> dataList;
+
+		QSqlQuery query("SELECT id,areaname FROM t_queue_area");
+		while (query.next()) {
+			areaT data;
+			data.id = query.value("id").toString();
+			data.areaname = query.value("areaname").toString();
+
+			dataList.append(data);
+		}
+		return dataList;
+	}
+
+	QList<regionT> queryLRegion(QString areaid)
+	{
+		QList<regionT> dataList;
+
+		QSqlQuery query("SELECT regionid,regionname FROM t_queue_region WHERE areaid = '"+areaid+"'");
+
+		while (query.next()) {
+			regionT data;
+			data.regionid = query.value("regionid").toString();
+			data.regionname = query.value("regionname").toString();
+
+			dataList.append(data);
+		}
+		return dataList;
+	}
 
 	QList<classT> queryLClass(QString regionid)
 	{
