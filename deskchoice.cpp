@@ -13,12 +13,7 @@ DeskChoice::DeskChoice(DeskCallQT *parent)
 {
 	ui.setupUi(this);
 	this->parent = parent;
-	setFixedSize(size());
-
-	Qt::WindowFlags flags=Qt::Dialog;
-
-    flags |= Qt::WindowCloseButtonHint;
-    setWindowFlags(flags);
+	setWindowFlags(Qt::Dialog | Qt::WindowCloseButtonHint | Qt::MSWindowsFixedSizeDialogHint);
 
 	ConfigSql configSql = ConfigSql();
 	areaList = configSql.queryLArea();

@@ -598,16 +598,9 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_16">
-        <property name="text">
-         <string>确定</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_17">
-        <property name="text">
-         <string>取消</string>
+       <widget class="QDialogButtonBox" name="buttonBox">
+        <property name="standardButtons">
+         <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
         </property>
        </widget>
       </item>
@@ -618,5 +611,38 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>DeskSettings</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>363</x>
+     <y>486</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>276</x>
+     <y>488</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>DeskSettings</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>436</x>
+     <y>487</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>486</x>
+     <y>489</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
